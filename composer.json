@@ -1,0 +1,17 @@
+{
+  "name" : "evan-alicia/it328/herohub",
+  "authors" : [
+    {
+      "name": "Evan",
+      "email":"ewheeler5@mail.greenriver.edu"
+    },
+    {
+      "name": "Alicia",
+      "email": "abuehner@mail.greenriver.edu"
+    }
+  ],
+  "require": {
+    "bcosca/fatfree-core": "dev-master"
+  }
+
+}
