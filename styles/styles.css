@@ -3,3 +3,14 @@
  * Date: TODO: fill in due date
  * Description: This file contains the css structures for the...
  */
+
+:root {
+    --navcolor: #3f3f3f;
+}
+
+#herohub-nav {
+    background-color: var(--navcolor);
+    height: 100%;
+    list-style-type: none;
+}
+
