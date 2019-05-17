@@ -28,5 +28,10 @@ $f3->route('GET /', function() {
     echo $view->render('views/homepage.html');
 });
 
+$f3->route('GET|POST /register', function() {
+    $view = new Template();
+    echo $view->render('views/account.html');
+});
+
 //Run Fat-free
 $f3->run();

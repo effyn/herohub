@@ -5,12 +5,24 @@
  */
 
 :root {
-    --navcolor: #3f3f3f;
+    --navcolor: #2f2f2f;
+    --linkcolor: #218ffe;
+
+    /*--navcolor2: #2f2f2f;*/
+    /*--linkcolor2: #6fafff;*/
 }
 
 #herohub-nav {
-    background-color: var(--navcolor);
-    height: 100%;
     list-style-type: none;
+    background-color: var(--navcolor);
+    color: var(--linkcolor);
 }
 
+#herohub-nav li {
+
+}
+
+#herohub-nav li:hover {
+    background-color: var(--linkcolor);
+    color: var(--navcolor);
+}
