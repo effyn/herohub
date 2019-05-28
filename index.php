@@ -28,9 +28,19 @@ $f3->route('GET /', function() {
     echo $view->render('views/homepage.html');
 });
 
-$f3->route('GET|POST /register', function() {
+$f3->route('GET /register', function() {
     $view = new Template();
     echo $view->render('views/account.html');
+});
+
+$f3->route('GET /preferences', function() {
+    $view = new Template();
+    echo $view->render('views/preferences.html');
+});
+
+$f3->route('GET /heroes', function() {
+    $view = new Template();
+    echo $view->render('views/heroes.html');
 });
 
 //Run Fat-free
