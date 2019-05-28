@@ -30,7 +30,7 @@ $f3->route('GET /', function() {
 
 $f3->route('GET|POST /register', function() {
     $view = new Template();
-    echo $view->render('views/account.html');
+    echo $view->render('views/register.html');
 });
 
 $f3->route('GET|POST /preferences', function() {
