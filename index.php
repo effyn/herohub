@@ -28,17 +28,17 @@ $f3->route('GET /', function() {
     echo $view->render('views/homepage.html');
 });
 
-$f3->route('GET /register', function() {
+$f3->route('GET|POST /register', function() {
     $view = new Template();
     echo $view->render('views/account.html');
 });
 
-$f3->route('GET /preferences', function() {
+$f3->route('GET|POST /preferences', function() {
     $view = new Template();
     echo $view->render('views/preferences.html');
 });
 
-$f3->route('GET /heroes', function() {
+$f3->route('GET|POST /heroes', function() {
     $view = new Template();
     echo $view->render('views/heroes.html');
 });
