@@ -10,7 +10,7 @@ Description: This file contains the html structures for the first form of regist
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/styles.css">
-    <title>Hero Hub | Homepage</title>
+    <title>Hero Hub | Register</title>
 </head>
 <body>
 
@@ -21,19 +21,20 @@ Description: This file contains the html structures for the first form of regist
                 <a href="account">Account details</a>
             </li>
             <li>
-                <a href="hero-prefs">Hero preferences</a>
+                <a href="preferences">General preferences</a>
             </li>
             <li>
-                <a href="other-prefs">Other preferences</a>
+                <a href="heroes">Hero preferences</a>
             </li>
         </ul>
     </div>
 
     <div class="col-lg-8">
         <h1>Blah Blah Form</h1>
-        <form action="#" method="post">
+        <!--TODO: Change form to be sticky-->
+        <form action="/preferences.php" method="post">
             <label>Username: <input type="text" name="username"></label><br>
-            <label>Username: <input type="email" name="email"></label><br>
+            <label>Email: <input type="email" name="email"></label><br>
             <label>Password: <input type="password" name="password"></label><br>
             <label>Confirm Password: <input type="password" name="confirm-password"></label><br>
 
