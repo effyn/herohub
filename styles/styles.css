@@ -6,23 +6,40 @@
 
 :root {
     --navcolor: #2f2f2f;
-    --linkcolor: #218ffe;
+    --maincolor: #218ffe;
+    --grey: #d7d4d0;
+    --orange: #f99e1a;
+    --darkblue: #405275;
+
 
     /*--navcolor2: #2f2f2f;*/
     /*--linkcolor2: #6fafff;*/
 }
 
-#herohub-nav {
-    list-style-type: none;
+body {
     background-color: var(--navcolor);
-    color: var(--linkcolor);
 }
 
-#herohub-nav li {
-
+.herohub-nav {
+    background-color: var(--navcolor);
+    color: var(--maincolor);
 }
 
-#herohub-nav li:hover {
-    background-color: var(--linkcolor);
+.herohub-nav li:hover {
+    background-color: var(--maincolor);
     color: var(--navcolor);
 }
+
+.navpush {
+    margin-top: 100px;
+}
+
+.mainbody {
+    background-color: var(--maincolor);
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+}
+
