@@ -4,38 +4,72 @@
  * Description: This file contains the css structures for the...
  */
 
+/*** General Styles ********************************/
+
 :root {
-    --navcolor: #2f2f2f;
+    --darkgrey: #2f2f2f;
     --maincolor: #218ffe;
     --grey: #d7d4d0;
     --orange: #f99e1a;
     --darkblue: #405275;
-
 
     /*--navcolor2: #2f2f2f;*/
     /*--linkcolor2: #6fafff;*/
 }
 
 body {
-    background-color: var(--navcolor);
+    background-color: var(--darkgrey);
+    font-family: Roboto, Helvetica Neue, Arial, sans-serif !important;
 }
 
+/*** Navbar styles ********************************/
+
 .herohub-nav {
-    background-color: var(--navcolor);
+    background-color: var(--darkgrey);
     color: var(--maincolor);
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.herohub-nav li {
+    color: var(--maincolor);
+    padding: 10px;
+}
+
+.herohub-nav li.active {
+    background-color: var(--maincolor);
+    color: var(--orange);
+    padding: 10px;
 }
 
 .herohub-nav li:hover {
-    background-color: var(--maincolor);
-    color: var(--navcolor);
+    background-color: var(--orange);
+    color: white;
+    padding: 10px;
+}
+
+.herohub-nav a:hover {
+    text-decoration: none;
+    color: var(--darkgrey);
+}
+
+.herohub-nav li:hover a {
+    color: inherit;
+}
+
+.herohub-nav li.active a {
+    color: inherit;
 }
 
 .navpush {
     margin-top: 100px;
 }
 
+/*** Content styles ********************************/
+
 .mainbody {
     background-color: var(--maincolor);
+    height: 100vh;
 }
 
 .footer {
@@ -43,3 +77,13 @@ body {
     bottom: 0;
 }
 
+/*** General Form styles ****************************/
+
+.btn-primary {
+    background-color: var(--orange);
+}
+
+.btn-primary:hover {
+    background-color: var(--darkgrey);
+    color: var(--orange);
+}

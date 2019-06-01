@@ -10,40 +10,62 @@ Description: This file contains the html structures for the first form of regist
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/styles.css">
-    <title>Hero Hub | Register</title>
+    <title>Hero Hub | Registration</title>
 </head>
 <body>
+<!-- Start of Side Navbar Content ------------------------------------------->
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block sidebar herohub-nav">
+                <div class="sidebar-sticky">
+                    <div class="navpush">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a href="./"><strong>Homepage</strong></a>
+                            </li>
+                            <li class="active">
+                                <a href="register"><strong>Account Details</strong></a>
+                            </li>
+                            <li>
+                                <a href="preferences"><strong>General Preferences</strong></a>
+                            </li>
+                            <li>
+                                <a href="heroes"><strong>Hero Preferences</strong></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
 
-<div class="row">
-    <div class="col-lg-3">
-        <ul id="herohub-nav">
-            <li>
-                <a href="register">Account details</a>
-            </li>
-            <li>
-                <a href="preferences">General preferences</a>
-            </li>
-            <li>
-                <a href="heroes">Hero preferences</a>
-            </li>
-        </ul>
+            <!-- Start of Main Body Content ------------------------------------------->
+            <main class="col-md-9 ml-sm-auto col-lg-10 px-4 mainbody" role="main">
+                <h1>Account Details</h1>
+                <!--TODO: Change form to be sticky and VALIDATE, post to self-->
+                <form action="#" method="post">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label>Username: <input class="form-control" type="text" name="username"></label><br>
+                            <label>Email: <input class="form-control" type="email" name="email"></label><br>
+                            <label>Password: <input class="form-control" type="password" name="password"></label><br>
+                            <label>Confirm Password: <input class="form-control" type="password" name="confirm-password"></label><br>
+
+                            <!--TODO: Consider making the location control something other than "text"-->
+                            <label>Location: <input class="form-control" type="text" name="location"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input class="btn btn-primary" type="submit" value="Next">
+                    </div>
+                </form>
+                <footer class="footer mt-auto py-3">
+                    <div class="container">
+                        <span class="text-muted"> This is some footer text. &copy;Copyright and usage text goes here...</span>
+                    </div>
+                </footer>
+            </main>
+        </div>
     </div>
 
-    <div class="col-lg-8">
-        <h1>Blah Blah Form</h1>
-        <!--TODO: Change form to be sticky and VALIDATE, post to self-->
-        <form action="preferences" method="post">
-            <label>Username: <input type="text" name="username"></label><br>
-            <label>Email: <input type="email" name="email"></label><br>
-            <label>Password: <input type="password" name="password"></label><br>
-            <label>Confirm Password: <input type="password" name="confirm-password"></label><br>
-
-            <!--TODO: Consider making the location control something other than "text"-->
-            <label>Location: <input type="text" name="location"></label>
-            <input type="submit" value="Next">
-        </form>
-    </div>
-</div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
