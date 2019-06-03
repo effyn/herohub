@@ -22,25 +22,34 @@ $f3->set('DEBUG', 3);
 
 //TODO: define additional routes below...
 
-//Define a default route
+//Define a default route to homepage
 $f3->route('GET /', function() {
     $view = new Template();
     echo $view->render('views/homepage.html');
 });
 
+//Define route for the first form page user registration information
 $f3->route('GET|POST /register', function() {
     $view = new Template();
     echo $view->render('views/register.html');
 });
 
+//Define route for second form page user play style settings
 $f3->route('GET|POST /preferences', function() {
     $view = new Template();
     echo $view->render('views/preferences.html');
 });
 
+//Define route for the third form page user player preferences
 $f3->route('GET|POST /heroes', function() {
     $view = new Template();
     echo $view->render('views/heroes.html');
+});
+
+//Define route for the user login page
+$f3->route('GET|POST /login', function() {
+    $view = new Template();
+    echo $view->render('views/login.html');
 });
 
 //Run Fat-free

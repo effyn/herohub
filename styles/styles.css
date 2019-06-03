@@ -11,6 +11,7 @@
     --maincolor: #218ffe;
     --grey: #d7d4d0;
     --orange: #f99e1a;
+    --orangefade: #cb7a03;
     --darkblue: #405275;
 
     /*--navcolor2: #2f2f2f;*/
@@ -20,6 +21,23 @@
 body {
     background-color: var(--darkgrey);
     font-family: Roboto, Helvetica Neue, Arial, sans-serif !important;
+    color: var(--darkgrey);
+}
+
+main {
+    -webkit-box-shadow: -2px 0px 19px 0px rgba(0,0,0,1);
+    -moz-box-shadow: -2px 0px 19px 0px rgba(0,0,0,1);
+    box-shadow: -2px 0px 19px 0px rgba(0,0,0,1);
+    height: 100vh;
+}
+h1, h2 {
+    font-family: Cantarell, Helvetica Neue, Arial, sans-serif !important;
+    font-weight: bold;
+    font-style: italic;
+}
+
+h2 {
+    color: var(--orange);
 }
 
 /*** Navbar styles ********************************/
@@ -40,6 +58,7 @@ body {
     background-color: var(--maincolor);
     color: var(--orange);
     padding: 10px;
+    width: 100vw;
 }
 
 .herohub-nav li:hover {
@@ -65,25 +84,44 @@ body {
     margin-top: 100px;
 }
 
-/*** Content styles ********************************/
+/*** General Content styles ********************************/
 
 .mainbody {
     background-color: var(--maincolor);
     height: 100vh;
+    overflow: auto;
 }
 
 .footer {
-    position: absolute;
+    position: relative;
     bottom: 0;
 }
 
 /*** General Form styles ****************************/
+.btn {
+    -webkit-box-shadow: 0px 5px 18px 0px rgba(34,34,34,1);
+    -moz-box-shadow: 0px 5px 18px 0px rgba(34,34,34,1);
+    box-shadow: 0px 5px 18px 0px rgba(34,34,34,1);
+    font-weight: bold;
+}
 
 .btn-primary {
     background-color: var(--orange);
+    border-color: var(--orange);
+    color: var(--darkgrey);
 }
 
 .btn-primary:hover {
-    background-color: var(--darkgrey);
-    color: var(--orange);
+    background-color: var(--orangefade);
+    border-color: var(--orangefade);
+    color: var(--grey);
+}
+
+
+/*** Specific Homepage styles ****************************/
+
+.homeimg {
+    -webkit-box-shadow: 0px 5px 18px 0px rgba(34,34,34,1);
+    -moz-box-shadow: 0px 5px 18px 0px rgba(34,34,34,1);
+    box-shadow: 0px 5px 18px 0px rgba(34,34,34,1);
 }

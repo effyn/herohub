@@ -8,8 +8,10 @@ Description: This file contains the html structures for the first form of regist
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Cantarell|Roboto&display=swap" rel="stylesheet">
     <title>Hero Hub | Registration</title>
 </head>
 <body>
@@ -18,21 +20,24 @@ Description: This file contains the html structures for the first form of regist
         <div class="row">
             <nav class="col-md-2 d-none d-md-block sidebar herohub-nav">
                 <div class="sidebar-sticky">
+                    <h2>HeroHub</h2>
                     <div class="navpush">
+                        <hr>
                         <ul class="nav flex-column">
                             <li class="nav-item">
                                 <a href="./"><strong>Homepage</strong></a>
                             </li>
-                            <li class="active">
+                            <li class="nav-item active">
                                 <a href="register"><strong>Account Details</strong></a>
                             </li>
-                            <li>
-                                <a href="preferences"><strong>General Preferences</strong></a>
+                            <li class="nav-item">
+                                <a href="preferences"><strong>Playstyle Preferences</strong></a>
                             </li>
-                            <li>
+                            <li class="nav-item">
                                 <a href="heroes"><strong>Hero Preferences</strong></a>
                             </li>
                         </ul>
+                        <hr>
                     </div>
                 </div>
             </nav>
@@ -40,10 +45,11 @@ Description: This file contains the html structures for the first form of regist
             <!-- Start of Main Body Content ------------------------------------------->
             <main class="col-md-9 ml-sm-auto col-lg-10 px-4 mainbody" role="main">
                 <h1>Account Details</h1>
+                <hr>
                 <!--TODO: Change form to be sticky and VALIDATE, post to self-->
                 <form action="#" method="post">
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col">
                             <label>Username: <input class="form-control" type="text" name="username"></label><br>
                             <label>Email: <input class="form-control" type="email" name="email"></label><br>
                             <label>Password: <input class="form-control" type="password" name="password"></label><br>
@@ -54,20 +60,24 @@ Description: This file contains the html structures for the first form of regist
                         </div>
                     </div>
                     <div class="row">
-                        <input class="btn btn-primary" type="submit" value="Next">
+                        <div class="col text-center">
+                            <input class="btn-lg btn-primary btn-block" type="submit" value="Next">
+                        </div>
                     </div>
                 </form>
                 <footer class="footer mt-auto py-3">
-                    <div class="container">
-                        <span class="text-muted"> This is some footer text. &copy;Copyright and usage text goes here...</span>
+                    <div class="row">
+                        <div class="col">
+                            <hr>
+                            <span class="text-muted">This is some footer text. &copy;Copyright and usage text goes here...</span>
+                        </div>
                     </div>
                 </footer>
             </main>
         </div>
     </div>
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
