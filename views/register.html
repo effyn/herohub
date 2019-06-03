@@ -74,12 +74,26 @@ Description: This file contains the html structures for the first form of regist
                                 <input class="form-control" type="email" name="email" id="email">
                             </div>
                             <div class="form-group">
-                                <label for="password"><strong>Password</strong></label>
-                                <input class="form-control" type="password" name="password" id="password">
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="password"><strong>Password</strong></label>
+                                        <input class="form-control" type="password" name="password" id="password">
+                                    </div>
+                                    <div class="col">
+                                        <label for="password2"><strong>Confirm Password</strong></label>
+                                        <input class="form-control" type="password" name="password2" id="password2">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="password2"><strong>Confirm Password</strong></label>
-                                <input class="form-control" type="password" name="confirm-password" id="password2">
+                            <div class="row">
+                                <div class="col-2"></div>
+                                <div class="col-8 text-center">
+                                    <small id="passwordHelp" class="form-text">
+                                        Your password must be 8-20 characters long, contain letters and numbers.
+                                        Cannot contain spaces or special characters
+                                    </small>
+                                </div>
+                                <div class="col-2"></div>
                             </div>
                         </div>
                         <div class="col-2"></div>
