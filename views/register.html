@@ -48,28 +48,48 @@ Description: This file contains the html structures for the first form of regist
                 <h1 class="text-center">Account Details</h1>
                 <hr>
                 <!--TODO: Change form to be sticky and VALIDATE, post to self-->
-                <form action="#" method="post">
+                <form action="preferences" method="post">
                     <div class="row">
                         <div class="col-2"></div>
                         <div class="col-8">
-                            <label for="username">Username:</label><br>
-                            <input class="form-control" type="text" name="username" id="username">
-                            <label for="email">Email:</label><br>
-                            <input class="form-control" type="email" name="email" id="email">
-                            <label for="password">Password:</label><br>
-                            <input class="form-control" type="password" name="password" id="password">
-                            <label for="password2">Confirm Password:</label><br>
-                            <input class="form-control" type="password" name="confirm-password" id="password2">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="first"><strong>First Name</strong></label>
+                                        <input class="form-control" type="text" name="first" id="first">
+                                    </div>
+                                    <div class="col">
+                                        <label for="last"><strong>Last Name</strong></label>
+                                        <input class="form-control" type="text" name="last" id="last">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="username"><strong>BattleTag</strong></label>
+                                <input class="form-control" type="text" name="username" id="username">
+                            </div>
+                            <div class="form-group">
+                            <label for="email"><strong>Email</strong></label>
+                                <input class="form-control" type="email" name="email" id="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="password"><strong>Password</strong></label>
+                                <input class="form-control" type="password" name="password" id="password">
+                            </div>
+                            <div class="form-group">
+                                <label for="password2"><strong>Confirm Password</strong></label>
+                                <input class="form-control" type="password" name="confirm-password" id="password2">
+                            </div>
                         </div>
                         <div class="col-2"></div>
                     </div>
                     <br>
                     <div class="row">
-                        <div class="col-2"></div>
-                        <div class="col-8 text-center">
+                        <div class="col-4"></div>
+                        <div class="col-4 text-center">
                             <input class="btn-lg btn-primary btn-block" type="submit" value="Next">
                         </div>
-                        <div class="col-2"></div>
+                        <div class="col-4"></div>
                     </div>
                 </form>
                 <footer class="footer mt-auto py-3">

@@ -28,13 +28,13 @@ Description: This file contains the html structures for the second form of regis
                                 <a href="./"><strong>Homepage</strong></a>
                             </li>
                             <li class="nav-item">
-                                <a href="register">Account Details</a>
+                                <a href="register"><strong>Account Details</strong></a>
                             </li>
                             <li class="nav-item active">
-                                <a href="preferences">Playstyle Preferences</a>
+                                <a href="preferences"><strong>Playstyle Preferences</strong></a>
                             </li>
                             <li class="nav-item">
-                                <a href="heroes">Hero Preferences</a>
+                                <a href="heroes"><strong>Hero Preferences</strong></a>
                             </li>
                         </ul>
                         <hr>
@@ -48,25 +48,67 @@ Description: This file contains the html structures for the second form of regis
                 <h1 class="text-center">Playstyle Preferences</h1>
                 <hr>
                 <!--TODO: Change form to be sticky and VALIDATE, post to self-->
-                <form action="#" method="post">
-                    <label>Select the region you play in:
-                        <select class="form-control" name="region">
-                            <option value="America">America</option>
-                            <option value="Europe">Europe</option>
-                            <option value="Asia">Asia</option>
-                        </select>
-                    </label><br>
-                    <!--TODO: Consider making the location control something other than "text"-->
-                    <label>Location: <input class="form-control" type="text" name="location"></label>
-                    <br>
-                    <label>
-                        Follower <input class="form-control" name="leader" type="range" min="1" max="5"> Leader
-                    </label>
+                <form action="heroes" method="post">
+                    <div class="row">
+                        <div class="col-2"></div>
+                        <div class="col-8">
+                            <div class="form-group">
+                                <label for="platform"><strong>Platform</strong></label>
+                                <select class="form-control text-center" name="platform" id="platform">
+                                    <option selected disabled>Select One</option>
+                                    <option value="pc">PC</option>
+                                    <option value="ps4">PS4</option>
+                                    <option value="xbox">Xbox One</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="region"><strong>Player Region</strong></label>
+                                <select class="form-control text-center" name="region" id="region">
+                                    <option selected disabled>Select One</option>
+                                    <option value="America">America</option>
+                                    <option value="Europe">Europe</option>
+                                    <option value="Asia">Asia</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label for="timezone"><strong>Time Zone</strong></label>
+                                    <select class="form-control text-center" name="timezone" id="timezone">
+                                        <!--TODO: fill in time zones -->
+                                        <option selected disabled>Select One</option>
+                                        <option value="">Fill in options</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="mic"><strong>Communication</strong></label>
+                                <div class="row">
+                                    <div class="col">
+                                        <span>Mic</span>
+                                    </div>
+                                    <div class="col text-center">
+                                        <span>Sometimes</span>
+                                    </div>
+                                    <div class="col text-right">
+                                        <span>No Mic</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <input class="form-control-range" name="mic" id="mic" type="range" min="1" max="5">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2"></div>
+                    </div>
                     <br>
                     <div class="row">
-                        <div class="col text-center">
+                        <div class="col-4"></div>
+                        <div class="col-4 text-center">
                             <input class="btn-lg btn-primary btn-block" type="submit" value="Next">
                         </div>
+                        <div class="col-4"></div>
                     </div>
                 </form>
                 <footer class="footer mt-auto py-3">

@@ -1,9 +1,3 @@
-<!--
-Name: Alicia Buehner, Evan Wheeler
-Date: TODO: fill in due date
-Description: This file contains the html structures for the homepage of our Hero Hub
-web application Final Project.
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +7,7 @@ web application Final Project.
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Cantarell|Roboto&display=swap" rel="stylesheet">
-    <title>HeroHub | Homepage</title>
+    <title>HeroHub | Summary</title>
 </head>
 <body>
     <!-- Start of Side Navbar ------------------------------------------->
@@ -31,9 +25,6 @@ web application Final Project.
                             <li class="nav-item">
                                 <a href="login"><strong>Login</strong></a>
                             </li>
-                            <li class="nav-item">
-                                <a href="register"><strong>Register</strong></a>
-                            </li>
                         </ul>
                         <hr>
                     </div>
@@ -43,37 +34,17 @@ web application Final Project.
             <!-- Start of Main Body Content ------------------------------------------->
             <main class="col-md-9 ml-sm-auto col-lg-10 px-4 mainbody" role="main">
                 <br>
-                <h1 class="text-center">Welcome to HeroHub</h1>
+                <h1 class="text-center">Registration Summary</h1>
                 <hr>
-                <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col-8">
-                        <p class="text-center">An Overwatch community hub connecting players based on individual
-                            preferences. <br> Selecting more preferences will make team and player matches more relevant
-                            and does not decrease the amount of matches a player will see. </p>
+                <form action="login" method="post">
+                    <div class="row">
+                        <div class="col-4"></div>
+                        <div class="col-4 text-center">
+                            <input class="btn-lg btn-primary btn-block" type="submit" value="Login">
+                        </div>
+                        <div class="col-4"></div>
                     </div>
-                    <div class="col-2"></div>
-                </div>
-                <div class="row">
-                    <div class="col-1"></div>
-                    <div class="col-5 text-center">
-                        <form action="register" method="post">
-                            <input class="btn-lg btn-primary btn-block" type="submit" value="Register Today!">
-                        </form>
-                    </div>
-                    <div class="col-5 text-center">
-                        <form action="login" method="post">
-                            <input class="btn-lg btn-primary btn-block" type="submit" value="Hero Login!">
-                        </form>
-                    </div>
-                    <div class="col-1"></div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col text-center">
-                        <img src="images/lineup-twitter.jpg" class="rounded img-fluid homeimg" alt="heroes">
-                    </div>
-                </div>
+                </form>
                 <footer class="footer mt-auto py-3">
                     <div class="row">
                         <div class="col">
