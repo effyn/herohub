@@ -27,14 +27,33 @@ $f3->route('GET /', function() {
 });
 
 //Define route to the first form page user registration information
-$f3->route('GET|POST /register', function() {
+$f3->route('GET|POST /register', function($f3) {
 
     //get data from form - $variable = $_POST['']
 
+    $fName = $_POST['first'];
+    $lName = $_POST['last'];
+    $battleTag =  $_POST['battletag'];
+    $email =  $_POST['email'];
+    $pw =  $_POST['password'];
+    $pw2 =  $_POST['password2'];
+
     //add data to the hive - $f3->set('', $variable)
+
+    $f3->set('fname', $fName);
+    $f3->set('lname',  $lName);
+    $f3->set('battletag', $battleTag);
+    $f3->set('email', $email);
+    $f3->set('password', $pw);
+    $f3->set('password2', $pw2);
+
 
     //if valid add to session (valid form) set session to variable
         //redirect to preferences page
+
+    if (validForm1()) {
+        //set the session variables
+    }
 
     $view = new Template();
     echo $view->render('views/register.html');
