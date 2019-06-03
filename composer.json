@@ -1,6 +1,6 @@
 {
-  "name" : "evan-alicia/it328/herohub",
-  "authors" : [
+  "name": "evan-alicia/it328/herohub",
+  "authors": [
     {
       "name": "Evan",
       "email":"ewheeler5@mail.greenriver.edu"
@@ -15,7 +15,6 @@
   },
   "autoload": {
     "classmap": ["model/classes/"],
-    "files": ["model/validation-functions.php"]
+    "files": ["model/"]
   }
-
 }
