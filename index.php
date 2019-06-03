@@ -9,7 +9,6 @@ error_reporting(E_ALL);
 
 //Require vendor/autoload file
 require_once('vendor/autoload.php');
-require_once('model/validation-functions.php');
 
 // Start session
 session_start();
