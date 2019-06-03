@@ -52,7 +52,10 @@ $f3->route('GET|POST /register', function($f3) {
         //redirect to preferences page
 
     if (validForm1()) {
-        //set the session variables
+        //TODO set the session variables
+
+        //Redirect to preferences
+        $f3->reroute('/preferences');
     }
 
     $view = new Template();

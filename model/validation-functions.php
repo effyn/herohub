@@ -5,9 +5,8 @@
 
 //TODO: write validation functions...
 
-
 /**
- * Checks to see that personal information form
+ * Checks to see that account registration form
  * is valid.
  *
  * @return boolean
@@ -18,24 +17,35 @@ function validForm1()
     $isValid = true;
 
     //check if each of the fields are valid for account form
-    if (!validName($f3->get('fName'))) {
+    if (!validName($f3->get('fname'))) {
         $isValid = false;
         $f3->set("errors['first']", 'Please enter a your first name');
     }
 
-    if (!validName($f3->get('lName'))) {
+    if (!validName($f3->get('lname'))) {
         $isValid = false;
         $f3->set("errors['last']", 'Please enter your last name');
     }
 
-    //TODO if for battletag
+    if(!validBattleTag($f3->get('battletag'))) {
+        $isValid = false;
+        $f3->set("errors['battletag']", 'Please enter a valid BattleTag');
+    }
 
     if (!validEmail($f3->get('email'))) {
         $isValid = false;
         $f3->set("errors['email']", 'Please enter a valid email');
     }
 
-    //TODO valid password
+    //check if first pw is valid
+    if (!validPassword($f3->get('password'))) {
+        $f3->set("errors['password']", 'Please enter a valid password');
+    }
+
+    //check if second password matches first password
+    if ($f3->get('password') != $f3->get('password2')) {
+        $f3->set("errors['password2']", 'Passwords did not match');
+    }
 
     return $isValid;
 }
@@ -53,12 +63,23 @@ function validName($name)
     return !empty($name) && ctype_alpha($name);
 }
 
-//TODO: valid battle tag
+/**
+ * This function validates that BattleTag is a valid value.
+ *
+ * @param String BattleTag A BattleTag to validate
+ * @return boolean
+ */
+function validBattleTag($battleTag)
+{
+    //battle tag regex
+    $regexPattern = "/^[\p{L}\p{Mn}][\p{L}\p{Mn}0-9]{2,11}#[0-9]{4,5}+$/u";
+    return preg_match($regexPattern, $battleTag);
+}
 
 /**
  * This function validates that email address is valid value.
  *
- * @param String 4email An email to validate
+ * @param String email An email to validate
  * @return boolean
  */
 function validEmail($email)
@@ -67,16 +88,19 @@ function validEmail($email)
     return filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($email);
 }
 
-//TODO: valid password reusable for both fields additionally need to check if both are equal to each other
-
-function validPassword($password) {
-
-    $regexPattern;
-
-    if (preg_match()) {
-
-    }
+/**
+ * This function validates that a password is valid value.
+ *
+ * @param String password A password to validate
+ * @return boolean
+ */
+function validPassword($password)
+{
+    // alphanumeric, 8-20 chars long, no spaces or special chars
+    $regexPattern = "/^[a-zA-Z0-9]{8, 20}$/";
+    return preg_match($regexPattern, $password);
 }
+
 
 
 
