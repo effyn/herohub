@@ -52,5 +52,12 @@ $f3->route('GET|POST /login', function() {
     echo $view->render('views/login.html');
 });
 
+//Define route for the user dashboard page
+$f3->route('GET|POST /dashboard', function() {
+    $view = new Template();
+    echo $view->render('views/dashboard.html');
+});
+
+
 //Run Fat-free
 $f3->run();
