@@ -44,19 +44,22 @@ Description: This file contains the html structures for the second form of regis
 
             <!-- Start of Main Body Content ------------------------------------------->
             <main class="col-md-9 ml-sm-auto col-lg-10 px-4 mainbody" role="main">
-                <h1>Playstyle Preferences</h1>
+                <h1 class="text-center">Playstyle Preferences</h1>
                 <hr>
                 <!--TODO: Change form to be sticky and VALIDATE, post to self-->
                 <form action="#" method="post">
                     <label>Select the region you play in:
-                        <select name="region">
+                        <select class="form-control" name="region">
                             <option value="America">America</option>
                             <option value="Europe">Europe</option>
                             <option value="Asia">Asia</option>
                         </select>
                     </label><br>
+                    <!--TODO: Consider making the location control something other than "text"-->
+                    <label>Location: <input class="form-control" type="text" name="location"></label>
+                    <br>
                     <label>
-                        Follower <input name="leader" type="range" min="1" max="5"> Leader
+                        Follower <input class="form-control" name="leader" type="range" min="1" max="5"> Leader
                     </label>
                     <br>
                     <div class="row">
