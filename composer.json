@@ -15,6 +15,6 @@
   },
   "autoload": {
     "classmap": ["model/classes/"],
-    "files": ["model/"]
+    "files": ["model/validation-functions.php"]
   }
 }
