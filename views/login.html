@@ -15,6 +15,7 @@
     <div class="row">
         <nav class="col-md-2 d-none d-md-block sidebar herohub-nav">
             <div class="sidebar-sticky">
+                <h2>HeroHub</h2>
                 <div class="navpush">
                     <ul class="nav flex-column">
                         <li class="nav-item active">
@@ -30,21 +31,38 @@
 
         <!-- Start of Main Body Content ------------------------------------------->
         <main class="col-md-9 ml-sm-auto col-lg-10 px-4 mainbody" role="main">
-            <h1>Login</h1>
+            <h1 class="text-center">Login</h1>
             <hr>
+            <br>
             <div class="row">
-                <form action="#" method="post">
-                    <div class="form-group">
-                        <input class="form-control" type="text" id="login" name="login" placeholder="username/email">
+                <div class="col-4"></div>
+                <div class="card">
+                    <br>
+                    <div class="card-body">
                         <br>
-                        <input class="form-control" type="text" id="password" name="login" placeholder="password">
+                        <form action="#" method="post">
+                            <div class="form-group">
+                                <input class="form-control" type="text" id="login" name="login" placeholder="username/email">
+                                <br>
+                                <input class="form-control" type="text" id="password" name="login" placeholder="password">
+                                <br>
+                                <br>
+                                <div class="col text-center">
+                                    <input class="btn-lg btn-primary btn-block" type="submit" value="Log In">
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    <div class="row">
-                        <div class="col text-center">
-                            <input class="btn-lg btn-primary btn-block" type="submit" value="Log In">
+                    <br>
+                    <div class="card-footer">
+                        <br>
+                        <div class="d-flex justify-content-center links">
+                            <span>Don't have an account? don't panic! <a href="register"> Sign Up Here!</a></span>
                         </div>
+                        <br>
                     </div>
-                </form>
+                </div>
+                <div class="col-4"></div>
             </div>
             <footer class="footer mt-auto py-3">
                 <div class="row">
