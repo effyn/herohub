@@ -7,7 +7,8 @@ Description: This file contains the html structures for the login page
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="height=device-height, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/styles.css">
@@ -44,30 +45,29 @@ Description: This file contains the html structures for the login page
             <br>
             <div class="row">
                 <div class="col-3"></div>
-                <div class="card">
-                    <div class="text-center">
-                        <h3>Welcome Back</h3>
-                    </div>
-                    <br>
-                    <div class="card-body">
-                        <!-- TODO change action to # POST to itself -->
-                        <form action="dashboard" method="post">
-                            <div class="form-group">
-                                <input class="form-control text-center" type="text" id="login" name="login" placeholder="email">
-                                <br>
-                                <input class="form-control text-center" type="text" id="password" name="login" placeholder="password">
-                                <br>
-                                <br>
-                                <div class="col text-center">
-                                    <input class="btn-lg btn-primary btn-block" type="submit" value="Log In">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="text-center">
+                            <h3>Welcome Back</h3>
+                        </div>
+                        <br>
+                        <div class="card-body">
+                            <!-- TODO change action to # POST to itself -->
+                            <form action="dashboard" method="post">
+                                <div class="form-group">
+                                    <input class="form-control text-center" type="text" id="login" name="login" placeholder="email">
+                                    <br>
+                                    <input class="form-control text-center" type="text" id="password" name="login" placeholder="password">
+                                    <br>
+                                    <br>
+                                    <div class="col text-center">
+                                        <input class="btn-lg btn-primary btn-block" type="submit" value="Log In">
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
-                    </div>
-                    <br>
-                    <div class="card-footer">
-                        <div class="d-flex justify-content-center links">
-                            <span>Don't have an account? don't panic! <a href="register"> Sign Up Here!</a></span>
+                            </form>
+                        </div>
+                        <div class="card-footer">
+                            <p class="text-center">Don't have an account? Don't panic!<br><a href="register"> Sign-Up Here!</a></p>
                         </div>
                     </div>
                 </div>
