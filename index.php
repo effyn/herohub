@@ -46,6 +46,12 @@ $f3->route('GET|POST /heroes', function() {
     echo $view->render('views/heroes.html');
 });
 
+//Define route for the registration summary page
+$f3->route('GET|POST /summary', function() {
+    $view = new Template();
+    echo $view->render('views/summary.html');
+});
+
 //Define route for the user login page
 $f3->route('GET|POST /login', function() {
     $view = new Template();
@@ -57,7 +63,6 @@ $f3->route('GET|POST /dashboard', function() {
     $view = new Template();
     echo $view->render('views/dashboard.html');
 });
-
 
 //Run Fat-free
 $f3->run();
