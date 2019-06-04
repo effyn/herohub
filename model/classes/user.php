@@ -2,25 +2,29 @@
 
 class User
 {
-    // default id so i dont pull my hair out over a null pointer
+    // Defaults to -1 so that instantiated objects have no null fields.
+    // A User's ID should be set ONLY if it has been inserted in the database.
     private $_id = -1;
-    private $_username;
-    private $_passhash;
+    private $_fname;
+    private $_lname;
+    private $_btag;
     private $_email;
-    private $_timezone;
+    private $_passhash;
 
     /**
-     * @param string $username
-     * @param string $passhash
+     * @param string $fname
+     * @param string $lname
+     * @param string $btag
      * @param string $email
-     * @param int $timezone
+     * @param string $passhash
      */
-    public function __construct__($username, $passhash, $email, $timezone)
+    public function __construct__($fname, $lname, $btag, $email, $passhash)
     {
-        $this->_username = $username;
-        $this->_passhash = $passhash;
+        $this->_fname = $fname;
+        $this->_lname = $lname;
+        $this->_btag = $btag;
         $this->_email = $email;
-        $this->_timezone = $timezone;
+        $this->_passhash = $passhash;
     }
 
     /**
@@ -45,41 +49,61 @@ class User
     /**
      * @return string
      */
-    public function getUsername()
+    public function getFname()
     {
-        return $this->_username;
+        return $this->_fname;
     }
 
     /**
-     * Sets the username for the User.
-     * This should only be called when the user requests a username change,
+     * Sets the first name for the User.
+     * This should only be called when the user requests a first name change,
      * and you should properly update the herohub-user row first.
      *
-     * @param string $username
+     * @param string $fname
      */
-    public function setUsername($username)
+    public function setFname($fname)
     {
-        $this->_username = $username;
+        $this->_fname = $fname;
     }
 
     /**
      * @return string
      */
-    public function getPasshash()
+    public function getLname()
     {
-        return $this->_passhash;
+        return $this->_lname;
     }
 
     /**
-     * Sets the password hash for a User.
-     * This should only be called when the user requests a password change,
+     * Sets the last name for the User.
+     * This should only be called when the user requests a last name change,
      * and you should properly update the herohub-user row first.
      *
-     * @param string $passhash
+     * @param string $lname
      */
-    public function setPasshash($passhash)
+    public function setLname($lname)
     {
-        $this->_passhash = $passhash;
+        $this->_lname = $lname;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBtag()
+    {
+        return $this->_btag;
+    }
+
+    /**
+     * Sets the BattleTag for the User.
+     * This should only be called when the user requests a BattleTag change,
+     * and you should properly update the herohub-user row first.
+     *
+     * @param string $btag
+     */
+    public function setBtag($btag)
+    {
+        $this->_btag = $btag;
     }
 
     /**
@@ -103,26 +127,22 @@ class User
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getTimezone()
+    public function getPasshash()
     {
-        return $this->_timezone;
+        return $this->_passhash;
     }
 
     /**
-     * Sets the timezone for a User.
-     * This should only be called when the user updates their information.
+     * Sets the password hash for a User.
+     * This should only be called when the user requests a password change,
      * and you should properly update the herohub-user row first.
      *
-     * @param int $timezone
+     * @param string $passhash
      */
-    public function setTimezone($timezone)
+    public function setPasshash($passhash)
     {
-        $this->_timezone = $timezone;
+        $this->_passhash = $passhash;
     }
-
-
-
-
 }
