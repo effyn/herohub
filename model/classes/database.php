@@ -25,17 +25,8 @@ class Database
     public function insertUser($user)
     {
         //TODO: impl
-    }
-
-    //TODO: determine whether this function is really necessary
-    /**
-     * Inserts a PremiumUser in the database. insertUser must be called before this.
-     *
-     * @param $user PremiumUser the premium user to insert into the herohub-premiumuser table
-     */
-    public function insertPremiumUser($user)
-    {
-        //TODO: impl
+        //TODO: use instanceof to determine whether to insert a new row
+        // in herohub-premiumuser as well
     }
 
     /**
@@ -48,28 +39,19 @@ class Database
     public function updateUser($user, $params)
     {
         //TODO: impl
-    }
-
-    //TODO: determine whether this function is really necessary
-    /**
-     * Updates a PremiumUser that exists in the database.
-     *
-     * @param $user PremiumUser the user to update
-     * @param $params array associative array of supported parameters
-     * @see comments
-     */
-    public function updatePremiumUser($user, $params)
-    {
-        //TODO: impl
+        //TODO: use instanceof to determine whether to update a row
+        // in herohub-premiumuser as well
     }
 
     /**
      * Deletes a User from the database.
      *
-     * @param $user User|PremiumUser the user to delete
+     * @param $user User the user to delete
      */
     public function deleteUser($user, $params)
     {
         //TODO: impl
+        //TODO: use instanceof to determine whether to delete a row
+        // from herohub-premiumuser as well
     }
 }
