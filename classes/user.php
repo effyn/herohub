@@ -11,6 +11,7 @@ class User
     private $_tag;
     private $_region;
     private $_micPref;
+    private $_leaderPref;
 
     /**
      * User constructor.
@@ -157,5 +158,23 @@ class User
     public function setMicPref($micPref)
     {
         $this->_micPref = $micPref;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLeaderPref()
+    {
+        return $this->_leaderPref;
+    }
+
+    /**
+     * Sets the Leader preference for a User.
+     *
+     * @param int $leaderPref
+     */
+    public function setLeaderPref($leaderPref)
+    {
+        $this->_leaderPref = $leaderPref;
     }
 }
