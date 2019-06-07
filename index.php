@@ -23,6 +23,7 @@ $f3->set('DEBUG', 3);
 
 //TODO: define expected values for form fields
 $f3->set('platforms', array( 'pc' => 'PC', 'psn' => 'PS4', 'xbl' => "Xbox One"));
+$f3->set('memberships', 'Sign up for a Premium Account. Gain access to preferred character matching!');
 
 //Define a default route to homepage
 $f3->route('GET /', function() {
@@ -39,12 +40,14 @@ $f3->route('GET|POST /register', function($f3) {
         $email =  $_POST['email'];
         $pw =  $_POST['password'];
         $pw2 =  $_POST['password2'];
+        $membership = $_POST['membership'];
 
         //add data to the hive - $f3->set('', $variable)
         $f3->set('platform', $platform);
         $f3->set('email', $email);
         $f3->set('password', $pw);
         $f3->set('password2', $pw2);
+        $f3->set('membership', $membership);
 
 
         //if valid add to session (valid form) set session to variable
@@ -56,7 +59,9 @@ $f3->route('GET|POST /register', function($f3) {
             $pw = password_hash($_POST['password'], PASSWORD_DEFAULT);
             $pw2 = password_hash($_POST['password2'], PASSWORD_DEFAULT);
 
-            //TODO set the session variables
+            if (!empty($membership)) {
+                //TODO set the session variables
+            }
 
             //Redirect to preferences
             $f3->reroute('/preferences');

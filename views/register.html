@@ -103,6 +103,20 @@ Description: This file contains the html structures for the first form of regist
                                 </div>
                                 <div class="col-2"></div>
                             </div>
+                            <div class="row">
+                                <fieldset>
+                                    <legend class="col-form-label pt-0"><strong>Premium Membership</strong></legend>
+                                    <input class="col-form-check-input" type="checkbox" name="membership" id="{{ @memberships }}"
+                                           value="{{ @memberships }}"
+                                    <check if="{{ !(empty(@membership)) && @membership == @memberships }}">
+                                        checked
+                                    </check>>
+                                    <label class="form-label" for="{{ @memberships }}">{{ @memberships }}</label>
+                                    <check if="{{ @errors['membership'] }}">
+                                        <small id="membershipHelp" class="text-danger">{{ @errors['membership'] }}</small>
+                                    </check>
+                                </fieldset>
+                            </div>
                         </div>
                         <div class="col-2"></div>
                     </div>

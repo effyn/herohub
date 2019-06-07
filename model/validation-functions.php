@@ -27,16 +27,21 @@ function validForm1()
         $f3->set("errors['email']", 'Please enter a valid email');
     }
 
-    //check if first pw is valid
+    //checks if first pw is valid and fits requirements
     if (!validPassword($f3->get('password'))) {
         $isValid = false;
         $f3->set("errors['password']", 'Please enter a valid password');
     }
 
-    //check if second password matches first password
+    //checks if second password matches first password
     if ($f3->get('password') != $f3->get('password2')) {
         $isValid = false;
         $f3->set("errors['password2']", 'Passwords did not match');
+    }
+
+    if (!validMembership($f3->get('membership'))) {
+        $isValid = false;
+        $f3->set("errors['membership']", 'Not a valid membership option');
     }
 
     return $isValid;
@@ -102,6 +107,26 @@ function validPassword($password)
     // alphanumeric, 8-20 chars long, no spaces or special chars
     $regexPattern = "/^[a-zA-Z0-9]{7,19}$/";
     return preg_match($regexPattern, $password);
+}
+
+/**
+ * This function validates that the Premium account input
+ * is a valid value.
+ *
+ * @param String $membership to validate
+ * @return boolean
+ */
+function validMembership($membership)
+{
+    global $f3;
+    $isValid = true;
+    // if it's empty, don't check for in array
+    if (!empty($membership)) {
+        if (!($membership == $f3->get('memberships'))) {
+            $isValid = false;
+        }
+    }
+    return $isValid;
 }
 
 
