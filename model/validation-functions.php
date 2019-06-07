@@ -16,6 +16,12 @@ function validForm1()
     global $f3;
     $isValid = true;
 
+    //TODO: inline error reporting
+    if(!validPlatform($f3->get('platform')))
+    {
+        $isValid = false;
+        $f3->set("errors['platform']", 'Please select a valid game platform');
+    }
 
     if (!validEmail($f3->get('email'))) {
         $isValid = false;
@@ -24,11 +30,13 @@ function validForm1()
 
     //check if first pw is valid
     if (!validPassword($f3->get('password'))) {
+        $isValid = false;
         $f3->set("errors['password']", 'Please enter a valid password');
     }
 
     //check if second password matches first password
     if ($f3->get('password') != $f3->get('password2')) {
+        $isValid = false;
         $f3->set("errors['password2']", 'Passwords did not match');
     }
 
@@ -56,6 +64,24 @@ function validForm2()
 }
 
 /**
+ * This function validates that a platform is valid
+ *
+ * @param String $platform a platform to validate
+ * @return boolean
+ */
+function validPlatform($platform)
+{
+    global $f3;
+
+    //platform is NOT optional
+    if (empty($platform)) {
+        return false;
+    }
+
+    return in_array($platform, $f3->get('platforms'));
+}
+
+/**
  * This function validates that email address is valid value.
  *
  * @param String email An email to validate
@@ -76,7 +102,7 @@ function validEmail($email)
 function validPassword($password)
 {
     // alphanumeric, 8-20 chars long, no spaces or special chars
-    $regexPattern = "/^[a-zA-Z0-9]{8, 20}$/";
+    $regexPattern = "/^[a-zA-Z0-9]{7,19}$/";
     return preg_match($regexPattern, $password);
 }
 

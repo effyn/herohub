@@ -19,6 +19,11 @@ $f3 = Base::instance();
 //Turn on Fat-Free error reporting
 $f3->set('DEBUG', 3);
 
+//TODO: Create Database object
+
+//TODO: define expected values for form fields
+$f3->set('platforms', array( 'pc' => 'PC', 'psn' => 'PS4', 'xbl' => "Xbox One"));
+
 //Define a default route to homepage
 $f3->route('GET /', function() {
     $view = new Template();
@@ -28,28 +33,29 @@ $f3->route('GET /', function() {
 //Define route to the first form page user registration information
 $f3->route('GET|POST /register', function($f3) {
 
-    //get data from form - $variable = $_POST['']
+    if (!empty($_POST)) {
+        //get data from form - $variable = $_POST['']
+        $platform = $_POST['platform'];
+        $email =  $_POST['email'];
+        $pw =  $_POST['password'];
+        $pw2 =  $_POST['password2'];
 
-    $platform = $_POST['platform'];
-    $email =  $_POST['email'];
-    $pw =  $_POST['password'];
-    $pw2 =  $_POST['password2'];
-
-    //add data to the hive - $f3->set('', $variable)
-    $f3->set('platform', $platform);
-    $f3->set('email', $email);
-    $f3->set('password', $pw);
-    $f3->set('password2', $pw2);
+        //add data to the hive - $f3->set('', $variable)
+        $f3->set('platform', $platform);
+        $f3->set('email', $email);
+        $f3->set('password', $pw);
+        $f3->set('password2', $pw2);
 
 
-    //if valid add to session (valid form) set session to variable
-        //redirect to preferences page
+        //if valid add to session (valid form) set session to variable
+            //redirect to preferences page
 
-    if (validForm1()) {
-        //TODO set the session variables
+        if (validForm1()) {
+            //TODO set the session variables
 
-        //Redirect to preferences
-        $f3->reroute('/preferences');
+            //Redirect to preferences
+            $f3->reroute('/preferences');
+        }
     }
 
     $view = new Template();

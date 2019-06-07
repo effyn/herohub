@@ -54,27 +54,43 @@ Description: This file contains the html structures for the first form of regist
                         <div class="col-2"></div>
                         <div class="col-8">
                             <div class="form-group">
-                                <label for="platform"><strong>Platform</strong></label>
+                                <label for="platform"><strong>Game Platform</strong></label>
                                 <select class="form-control text-center" name="platform" id="platform">
                                     <option selected disabled>Select One</option>
-                                    <option value="pc">PC</option>
-                                    <option value="psn">PS4</option>
-                                    <option value="xbl">Xbox One</option>
+                                    <repeat group="{{ @platforms }}" value="{{ @platformOption }}">
+                                        <option
+                                        <check if="{{ @platform == @platformOption }}">
+                                            selected
+                                        </check>
+                                        >{{ @platformOption }}</option>
+                                    </repeat>
                                 </select>
+                                <check if="{{ @errors['platform'] }}">
+                                    <small id="platformHelp" class="text-danger">{{ @errors['platform'] }}</small>
+                                </check>
                             </div>
                             <div class="form-group">
-                            <label for="email"><strong>Email</strong></label>
+                                <label for="email"><strong>Email</strong></label>
                                 <input class="form-control" type="email" name="email" id="email">
+                                <check if="{{ @errors['email'] }}">
+                                    <small id="emailHelp" class="text-danger">{{ @errors['email'] }}</small>
+                                </check>
                             </div>
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col">
                                         <label for="password"><strong>Password</strong></label>
                                         <input class="form-control" type="password" name="password" id="password">
+                                        <check if="{{ @errors['password'] }}">
+                                            <small id="passwordHelp" class="text-danger">{{ @errors['password'] }}</small>
+                                        </check>
                                     </div>
                                     <div class="col">
                                         <label for="password2"><strong>Confirm Password</strong></label>
                                         <input class="form-control" type="password" name="password2" id="password2">
+                                        <check if="{{ @errors['password2'] }}">
+                                            <small id="password2Help" class="text-danger">{{ @errors['password2'] }}</small>
+                                        </check>
                                     </div>
                                 </div>
                             </div>
