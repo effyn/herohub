@@ -30,18 +30,13 @@ $f3->route('GET|POST /register', function($f3) {
 
     //get data from form - $variable = $_POST['']
 
-    $fName = $_POST['first'];
-    $lName = $_POST['last'];
-    $battleTag =  $_POST['battletag'];
+    $platform = $_POST['platform'];
     $email =  $_POST['email'];
     $pw =  $_POST['password'];
     $pw2 =  $_POST['password2'];
 
     //add data to the hive - $f3->set('', $variable)
-
-    $f3->set('fname', $fName);
-    $f3->set('lname',  $lName);
-    $f3->set('battletag', $battleTag);
+    $f3->set('platform', $platform);
     $f3->set('email', $email);
     $f3->set('password', $pw);
     $f3->set('password2', $pw2);
@@ -62,11 +57,13 @@ $f3->route('GET|POST /register', function($f3) {
 });
 
 //Define route to second form page user play style settings
-$f3->route('GET|POST /preferences', function() {
+$f3->route('GET|POST /preferences', function($f3) {
 
     //get data from form - $variable = $_POST['']
+    //$battleTag =  $_POST['battletag'];
 
     //add data to the hive - $f3->set('', $variable)
+    //$f3->set('battletag', $battleTag);
 
     //if valid add to session (valid form) set session to variable
         //redirect to heroes page
