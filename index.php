@@ -49,15 +49,15 @@ $f3->route('GET|POST /register', function($f3) {
         $f3->set('password2', $pw2);
         $f3->set('membership', $membership);
 
-
         //if valid add to session (valid form) set session to variable
             //redirect to preferences page
 
         if (validForm1()) {
 
             //hash password after valid check
+            //this is string(60) but it can change depending on the PHP version
+            //so store in the database as VARCHAR(255)
             $pw = password_hash($_POST['password'], PASSWORD_DEFAULT);
-            $pw2 = password_hash($_POST['password2'], PASSWORD_DEFAULT);
 
             if (!empty($membership)) {
                 $newUser = new PremiumUser($platform, $email, $pw);
@@ -78,7 +78,6 @@ $f3->route('GET|POST /register', function($f3) {
 //Define route to second form page user play style settings
 $f3->route('GET|POST /preferences', function($f3) {
 
-    //get data from form - $variable = $_POST['']
     if (!empty($_POST)) {
         $tag = $_POST['tag'];
 
