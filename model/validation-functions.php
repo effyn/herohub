@@ -19,7 +19,7 @@ function validForm1()
     if(!validPlatform($f3->get('platform')))
     {
         $isValid = false;
-        $f3->set("errors['platform']", 'Please select a valid game platform');
+        $f3->set("errors['platform']", 'Please select a valid platform');
     }
 
     if (!validEmail($f3->get('email'))) {
@@ -58,11 +58,10 @@ function validForm2()
     global $f3;
     $isValid = true;
 
-    if(!validBattleTag($f3->get('battletag'))) {
+    if(!validTag($f3->get('tag'))) {
         $isValid = false;
-        $f3->set("errors['battletag']", 'Please enter a valid BattleTag');
+        $f3->set("errors['tag']", 'Please enter a valid id');
     }
-
     return $isValid;
 }
 
@@ -80,8 +79,7 @@ function validPlatform($platform)
     if (empty($platform)) {
         return false;
     }
-
-    return in_array($platform, $f3->get('platforms'));
+    return array_key_exists($platform, $f3->get('platforms'));
 }
 
 /**
@@ -132,16 +130,35 @@ function validMembership($membership)
 
 //TODO: Everything below now goes with form 2 validation
 /**
- * This function validates that BattleTag is a valid value.
+ * This function validates that tag is a valid value.
  *
- * @param String BattleTag A BattleTag to validate
+ * @param String tag A user tag to validate
+ * @param String user selected platform
  * @return boolean
  */
-function validBattleTag($battleTag)
+function validTag($tag)
 {
-    //battle tag regex
-    $regexPattern = "/^[\p{L}\p{Mn}][\p{L}\p{Mn}0-9]{2,11}#[0-9]{4,5}+$/u";
-    return preg_match($regexPattern, $battleTag);
+    global $f3;
+    $isValid = true;
+
+    if ($f3->get('platform') == 'pc') {
+        //BattleTag regex
+        $regexPattern = "/^[\p{L}\p{Mn}][\p{L}\p{Mn}0-9]{2,11}#[0-9]{4,5}+$/u";
+        $isValid = preg_match($regexPattern, $tag);
+    }
+
+    if ($f3->get('platform') == 'psn') {
+        //psn tag regex
+        $regexPattern = "/^[a-zA-Z]{1}[a-zA-Z0-9_-]{2,15}$/";
+        $isValid = preg_match($regexPattern, $tag);
+    }
+
+    if ($f3->get('platform') == 'xbl') {
+        //Gamertag regex
+        $regexPattern = "/^[a-zA-Z0-9_ ]{0,14}$/";
+        $isValid = preg_match($regexPattern, $tag);
+    }
+    return $isValid;
 }
 
 //TODO: gamertag and PSN regex, think these will work for

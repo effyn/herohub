@@ -56,9 +56,9 @@ Description: This file contains the html structures for the first form of regist
                                 <label for="platform"><strong>Game Platform</strong></label>
                                 <select class="form-control text-center" name="platform" id="platform">
                                     <option selected disabled>Select One</option>
-                                    <repeat group="{{ @platforms }}" value="{{ @platformOption }}">
-                                        <option
-                                        <check if="{{ @platform == @platformOption }}">
+                                    <repeat group="{{ @platforms }}" key="{{ @key }}" value="{{ @platformOption }}">
+                                        <option value="{{ @key}}"
+                                        <check if="{{ @platform == @key }}">
                                             selected
                                         </check>
                                         >{{ @platformOption }}</option>

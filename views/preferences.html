@@ -52,7 +52,7 @@ Description: This file contains the html structures for the second form of regis
                     <div class="row">
                         <div class="col-2"></div>
                         <div class="col-8">
-                            <check if="{{ $_SESSION['user']->getPlatform()=='PC'}}">
+                            <check if="{{ $_SESSION['user']->getPlatform()=='pc'}}">
                                 <true>
                                     <div class="form-group">
                                         <label for="tag"><strong>BattleTag</strong></label>
@@ -69,7 +69,7 @@ Description: This file contains the html structures for the second form of regis
                                     </div>
                                 </true>
                             </check>
-                            <check if="{{ $_SESSION['user']->getPlatform()=='PS4'}}">
+                            <check if="{{ $_SESSION['user']->getPlatform()=='psn'}}">
                                 <true>
                                     <div class="form-group">
                                         <label for="tag"><strong>PSN ID</strong></label>
@@ -77,7 +77,7 @@ Description: This file contains the html structures for the second form of regis
                                     </div>
                                 </true>
                             </check>
-                            <check if="{{ $_SESSION['user']->getPlatform()=='Xbox One'}}">
+                            <check if="{{ $_SESSION['user']->getPlatform()=='xbl'}}">
                                 <true>
                                     <div class="form-group">
                                         <label for="tag"><strong>Gamertag</strong></label>
@@ -89,13 +89,13 @@ Description: This file contains the html structures for the second form of regis
                                 <label for="mic"><strong>Communication</strong></label>
                                 <div class="row">
                                     <div class="col">
-                                        <span>Mic</span>
+                                        <span>No Mic</span>
                                     </div>
                                     <div class="col text-center">
                                         <span>Sometimes</span>
                                     </div>
                                     <div class="col text-right">
-                                        <span>No Mic</span>
+                                        <span>Mic</span>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -108,18 +108,18 @@ Description: This file contains the html structures for the second form of regis
                                 <label for="leader"><strong>Leadership</strong></label>
                                 <div class="row">
                                     <div class="col">
-                                        <span>Leader</span>
+                                        <span>Follower</span>
                                     </div>
                                     <div class="col text-center">
                                         <span>Either</span>
                                     </div>
                                     <div class="col text-right">
-                                        <span>Follower</span>
+                                        <span>Leader</span>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <input class="form-control-range" name="leader" id="leader" type="range" min="1" max="5">
+                                        <input class="form-control-range" name="leader" id="leader" type="range" min="-2" max="2">
                                     </div>
                                 </div>
                             </div>

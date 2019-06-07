@@ -78,18 +78,26 @@ $f3->route('GET|POST /register', function($f3) {
 //Define route to second form page user play style settings
 $f3->route('GET|POST /preferences', function($f3) {
 
-    //TODO: address the associative array for platform, session storing => value we want it to display the value
-    //      but store the key, if adjusted adjust getPlatform in view page. Validation for this?? we have BattleTag
-    //      validation, what to do if field is xbox or ps4??
     //get data from form - $variable = $_POST['']
-    //$battleTag =  $_POST['tag'];
+    if (!empty($_POST)) {
+        $tag = $_POST['tag'];
 
-    //add data to the hive - $f3->set('', $variable)
-    //$f3->set('tag', tag);
+        //if user is a pc user display region field
+        if ($f3->get('platform') == 'pc') {
+            $region = $_POST['region'];
+        }
 
-    //if valid add to session (valid form) set session to variable
+        $mic = $_POST['mic'];
+        $leadership = $_POST['leader'];
+
+        //add data to the hive - $f3->set('', $variable)
+        $f3->set('tag', $tag);
+        $f3->set('mic', $mic);
+        $f3->set('leadership', $leadership);
+
+        //if valid add to session (valid form) set session to variable
         //redirect to heroes page
-
+    }
     $view = new Template();
     echo $view->render('views/preferences.html');
 });
