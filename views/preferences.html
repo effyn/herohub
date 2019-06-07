@@ -71,16 +71,6 @@ Description: This file contains the html structures for the second form of regis
                                 </select>
                             </div>
                             <div class="form-group">
-                                <div class="form-group">
-                                    <label for="timezone"><strong>Time Zone</strong></label>
-                                    <select class="form-control text-center" name="timezone" id="timezone">
-                                        <!--TODO: fill in time zones -->
-                                        <option selected disabled>Select One</option>
-                                        <option value="">Fill in options</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <label for="mic"><strong>Communication</strong></label>
                                 <div class="row">
                                     <div class="col">
@@ -96,6 +86,25 @@ Description: This file contains the html structures for the second form of regis
                                 <div class="row">
                                     <div class="col">
                                         <input class="form-control-range" name="mic" id="mic" type="range" min="1" max="5">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="leader"><strong>Leadership</strong></label>
+                                <div class="row">
+                                    <div class="col">
+                                        <span>Leader</span>
+                                    </div>
+                                    <div class="col text-center">
+                                        <span>Either</span>
+                                    </div>
+                                    <div class="col text-right">
+                                        <span>Follower</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <input class="form-control-range" name="leader" id="leader" type="range" min="1" max="5">
                                     </div>
                                 </div>
                             </div>
