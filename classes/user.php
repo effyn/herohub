@@ -10,7 +10,6 @@ class User
     private $_passhash;
     private $_tag;
     private $_region;
-    private $_timezone;
     private $_micPref;
 
     /**
@@ -21,17 +20,15 @@ class User
      * @param string $passhash string
      * @param string $tag string
      * @param string $region string
-     * @param int $timezone
      * @param int $micPref
      */
-    public function __construct($platform, $email, $passhash, $tag, $region, $timezone, $micPref)
+    public function __construct($platform, $email, $passhash, $tag, $region, $micPref)
     {
         $this->_platform = $platform;
         $this->_email = $email;
         $this->_passhash = $passhash;
         $this->_tag = $tag;
         $this->_region = $region;
-        $this->_timezone = $timezone;
         $this->_micPref = $micPref;
     }
 
@@ -148,24 +145,6 @@ class User
     public function setRegion($region)
     {
         $this->_region = $region;
-    }
-
-    /**
-     * @return int
-     */
-    public function getTimezone()
-    {
-        return $this->_timezone;
-    }
-
-    /**
-     * Sets the timezone for the User. (offset from GMT)
-     *
-     * @param int $timezone
-     */
-    public function setTimezone($timezone)
-    {
-        $this->_timezone = $timezone;
     }
 
     /**

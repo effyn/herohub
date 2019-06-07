@@ -51,6 +51,11 @@ $f3->route('GET|POST /register', function($f3) {
             //redirect to preferences page
 
         if (validForm1()) {
+
+            //hash password after valid check
+            $pw = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $pw2 = password_hash($_POST['password2'], PASSWORD_DEFAULT);
+
             //TODO set the session variables
 
             //Redirect to preferences
@@ -65,6 +70,7 @@ $f3->route('GET|POST /register', function($f3) {
 //Define route to second form page user play style settings
 $f3->route('GET|POST /preferences', function($f3) {
 
+    print_r($_SESSION);
     //get data from form - $variable = $_POST['']
     //$battleTag =  $_POST['battletag'];
 
