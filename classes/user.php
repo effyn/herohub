@@ -5,26 +5,34 @@ class User
     // Defaults to -1 so that instantiated objects have no null fields.
     // A User's ID should be set ONLY if it has been inserted in the database.
     private $_id = -1;
-    private $_fname;
-    private $_lname;
-    private $_btag;
+    private $_platform;
     private $_email;
     private $_passhash;
+    private $_tag;
+    private $_region;
+    private $_timezone;
+    private $_micPref;
 
     /**
-     * @param string $fname
-     * @param string $lname
-     * @param string $btag
-     * @param string $email
-     * @param string $passhash
+     * User constructor.
+     *
+     * @param string $platform string
+     * @param string $email string
+     * @param string $passhash string
+     * @param string $tag string
+     * @param string $region string
+     * @param int $timezone
+     * @param int $micPref
      */
-    public function __construct__($fname, $lname, $btag, $email, $passhash)
+    public function __construct($platform, $email, $passhash, $tag, $region, $timezone, $micPref)
     {
-        $this->_fname = $fname;
-        $this->_lname = $lname;
-        $this->_btag = $btag;
+        $this->_platform = $platform;
         $this->_email = $email;
         $this->_passhash = $passhash;
+        $this->_tag = $tag;
+        $this->_region = $region;
+        $this->_timezone = $timezone;
+        $this->_micPref = $micPref;
     }
 
     /**
@@ -37,7 +45,7 @@ class User
 
     /**
      * Sets the ID acquired from the database for this User.
-     * This should only be called after a herohub-user row is inserted.
+     * NOTE: This MUST be called after a herohub-user row is inserted.
      *
      * @param int $id
      */
@@ -49,61 +57,21 @@ class User
     /**
      * @return string
      */
-    public function getFname()
+    public function getTag()
     {
-        return $this->_fname;
+        return $this->_tag;
     }
 
     /**
-     * Sets the first name for the User.
-     * This should only be called when the user requests a first name change,
+     * Sets the BattleTag / Gamertag / PSN ID for the User.
+     * This should only be called when the user requests a tag change,
      * and you should properly update the herohub-user row first.
      *
-     * @param string $fname
+     * @param string $tag
      */
-    public function setFname($fname)
+    public function setTag($tag)
     {
-        $this->_fname = $fname;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLname()
-    {
-        return $this->_lname;
-    }
-
-    /**
-     * Sets the last name for the User.
-     * This should only be called when the user requests a last name change,
-     * and you should properly update the herohub-user row first.
-     *
-     * @param string $lname
-     */
-    public function setLname($lname)
-    {
-        $this->_lname = $lname;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBtag()
-    {
-        return $this->_btag;
-    }
-
-    /**
-     * Sets the BattleTag for the User.
-     * This should only be called when the user requests a BattleTag change,
-     * and you should properly update the herohub-user row first.
-     *
-     * @param string $btag
-     */
-    public function setBtag($btag)
-    {
-        $this->_btag = $btag;
+        $this->_tag = $tag;
     }
 
     /**
@@ -144,5 +112,77 @@ class User
     public function setPasshash($passhash)
     {
         $this->_passhash = $passhash;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPlatform()
+    {
+        return $this->_platform;
+    }
+
+    /**
+     * Sets the platform for a User. Must be in array('pc', 'xbl', 'psn').
+     *
+     * @param string $platform
+     */
+    public function setPlatform($platform)
+    {
+        $this->_platform = $platform;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRegion()
+    {
+        return $this->_region;
+    }
+
+    /**
+     * Sets the region for a User. Must be in array('us', 'eu', 'asia').
+     *
+     * @param string $region
+     */
+    public function setRegion($region)
+    {
+        $this->_region = $region;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTimezone()
+    {
+        return $this->_timezone;
+    }
+
+    /**
+     * Sets the timezone for the User. (offset from GMT)
+     *
+     * @param int $timezone
+     */
+    public function setTimezone($timezone)
+    {
+        $this->_timezone = $timezone;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMicPref()
+    {
+        return $this->_micPref;
+    }
+
+    /**
+     * Sets the microphone preference for a User.
+     *
+     * @param int $micPref
+     */
+    public function setMicPref($micPref)
+    {
+        $this->_micPref = $micPref;
     }
 }
