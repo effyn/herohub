@@ -13,6 +13,9 @@ require_once('vendor/autoload.php');
 // Start session
 session_start();
 
+// TODO: remove this line
+var_dump($_SESSION);
+
 //Create an instance of the Base class (instantiate Fat-Free)
 $f3 = Base::instance();
 
@@ -43,6 +46,7 @@ $f3->route('GET|POST /register', function($f3) {
         $membership = $_POST['membership'];
 
         //add data to the hive - $f3->set('', $variable)
+
         $f3->set('platform', $platform);
         $f3->set('email', $email);
         $f3->set('password', $pw);
@@ -83,7 +87,7 @@ $f3->route('GET|POST /preferences', function($f3) {
 
         //if user is a pc user display region field
         if ($f3->get('platform') == 'pc') {
-            $region = $_POST['region'];
+            $f3->set('region', $_POST['region']);
         }
 
         $mic = $_POST['mic'];
@@ -96,7 +100,12 @@ $f3->route('GET|POST /preferences', function($f3) {
 
         //if valid add to session (valid form) set session to variable
         //redirect to heroes page
+        if (validForm2())
+        {
+
+        }
     }
+
     $view = new Template();
     echo $view->render('views/preferences.html');
 });
