@@ -9,10 +9,9 @@ class PremiumUser extends User
      *
      * @param array $_heroes
      */
-    public function __construct($platform, $email, $passhash, $tag, $region, $micPref, $_heroes)
+    public function __construct($platform, $email, $passhash)
     {
-        parent::__construct($platform, $email, $passhash, $tag, $region, $micPref);
-        $this->_heroes = $_heroes;
+        parent::__construct($platform, $email, $passhash);
     }
 
     /**
