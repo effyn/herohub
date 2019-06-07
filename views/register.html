@@ -48,7 +48,6 @@ Description: This file contains the html structures for the first form of regist
                 <br>
                 <h1 class="text-center">ACCOUNT DETAILS</h1>
                 <hr>
-                <!--TODO: Change form to be sticky and VALIDATE, post to self-->
                 <form action="#" method="post">
                     <div class="row">
                         <div class="col-2"></div>
@@ -71,7 +70,7 @@ Description: This file contains the html structures for the first form of regist
                             </div>
                             <div class="form-group">
                                 <label for="email"><strong>Email</strong></label>
-                                <input class="form-control" type="email" name="email" id="email">
+                                <input class="form-control" type="email" name="email" id="email" value="{{ @email }}">
                                 <check if="{{ @errors['email'] }}">
                                     <small id="emailHelp" class="text-danger">{{ @errors['email'] }}</small>
                                 </check>
@@ -80,14 +79,14 @@ Description: This file contains the html structures for the first form of regist
                                 <div class="row">
                                     <div class="col">
                                         <label for="password"><strong>Password</strong></label>
-                                        <input class="form-control" type="password" name="password" id="password">
+                                        <input class="form-control" type="password" name="password" id="password" value="{{ @password }}">
                                         <check if="{{ @errors['password'] }}">
                                             <small id="password1Help" class="text-danger">{{ @errors['password'] }}</small>
                                         </check>
                                     </div>
                                     <div class="col">
                                         <label for="password2"><strong>Confirm Password</strong></label>
-                                        <input class="form-control" type="password" name="password2" id="password2">
+                                        <input class="form-control" type="password" name="password2" id="password2" value="{{ @password }}">
                                         <check if="{{ @errors['password2'] }}">
                                             <small id="password2Help" class="text-danger">{{ @errors['password2'] }}</small>
                                         </check>
