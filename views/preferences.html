@@ -57,6 +57,9 @@ Description: This file contains the html structures for the second form of regis
                                     <div class="form-group">
                                         <label for="tag"><strong>BattleTag</strong></label>
                                         <input class="form-control" type="text" name="tag" id="tag">
+                                        <check if="{{ @errors['tag'] }}">
+                                            <small id="tagHelp" class="text-danger">{{ @errors['tag'] }}</small>
+                                        </check>
                                     </div>
                                     <div class="form-group">
                                         <label for="region"><strong>Region</strong></label>
@@ -73,7 +76,10 @@ Description: This file contains the html structures for the second form of regis
                                 <true>
                                     <div class="form-group">
                                         <label for="tag"><strong>PSN ID</strong></label>
-                                        <input class="form-control" type="text" name="tag" id="tag">
+                                        <input class="form-control" type="text" name="tag" id="tag2">
+                                        <check if="{{ @errors['tag'] }}">
+                                            <small id="tag2Help" class="text-danger">{{ @errors['tag'] }}</small>
+                                        </check>
                                     </div>
                                 </true>
                             </check>
@@ -81,7 +87,10 @@ Description: This file contains the html structures for the second form of regis
                                 <true>
                                     <div class="form-group">
                                         <label for="tag"><strong>Gamertag</strong></label>
-                                        <input class="form-control" type="text" name="tag" id="tag">
+                                        <input class="form-control" type="text" name="tag" id="tag3">
+                                        <check if="{{ @errors['tag'] }}">
+                                            <small id="tag3Help" class="text-danger">{{ @errors['tag'] }}</small>
+                                        </check>
                                     </div>
                                 </true>
                             </check>
