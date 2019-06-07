@@ -60,8 +60,11 @@ $f3->route('GET|POST /register', function($f3) {
             $pw2 = password_hash($_POST['password2'], PASSWORD_DEFAULT);
 
             if (!empty($membership)) {
-                //TODO set the session variables
+                $newUser = new PremiumUser($platform, $email, $pw);
+            } else {
+                $newUser = new User($platform, $email, $pw);
             }
+            $_SESSION['user'] = $newUser;
 
             //Redirect to preferences
             $f3->reroute('/preferences');
@@ -75,11 +78,14 @@ $f3->route('GET|POST /register', function($f3) {
 //Define route to second form page user play style settings
 $f3->route('GET|POST /preferences', function($f3) {
 
+    //TODO: address the associative array for platform, session storing => value we want it to display the value
+    //      but store the key, if adjusted adjust getPlatform in view page. Validation for this?? we have BattleTag
+    //      validation, what to do if field is xbox or ps4??
     //get data from form - $variable = $_POST['']
-    //$battleTag =  $_POST['battletag'];
+    //$battleTag =  $_POST['tag'];
 
     //add data to the hive - $f3->set('', $variable)
-    //$f3->set('battletag', $battleTag);
+    //$f3->set('tag', tag);
 
     //if valid add to session (valid form) set session to variable
         //redirect to heroes page

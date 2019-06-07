@@ -18,18 +18,12 @@ class User
      * @param string $platform string
      * @param string $email string
      * @param string $passhash string
-     * @param string $tag string
-     * @param string $region string
-     * @param int $micPref
      */
-    public function __construct($platform, $email, $passhash, $tag, $region, $micPref)
+    public function __construct($platform, $email, $passhash)
     {
         $this->_platform = $platform;
         $this->_email = $email;
         $this->_passhash = $passhash;
-        $this->_tag = $tag;
-        $this->_region = $region;
-        $this->_micPref = $micPref;
     }
 
     /**

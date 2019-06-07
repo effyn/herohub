@@ -48,28 +48,43 @@ Description: This file contains the html structures for the second form of regis
                 <br>
                 <h1 class="text-center">PLAYSTYLE PREFERENCES</h1>
                 <hr>
-                <!--TODO: Change form to be sticky and VALIDATE, post to self-->
-                <form action="heroes" method="post">
+                <form action="#" method="post">
                     <div class="row">
                         <div class="col-2"></div>
                         <div class="col-8">
-                            <!-- TODO: should only display label BattleTag for pc users -->
-                            <!-- TODO: should only display label PSN ID for playstation users -->
-                            <!-- TODO: should only display label Gamertag for playstation users -->
-                            <div class="form-group">
-                                <label for="battletag"><strong>Display BattleTag/GamerTag/PSN ID based on choice</strong></label>
-                                <input class="form-control" type="text" name="battletag" id="battletag">
-                            </div>
-                            <!-- TODO: Change this to input to wrap in check tag - should only display for pc players -->
-                            <div class="form-group">
-                                <label for="region"><strong>Display Player Region if PC</strong></label>
-                                <select class="form-control text-center" name="region" id="region">
-                                    <option selected disabled>Select One</option>
-                                    <option value="America">America</option>
-                                    <option value="Europe">Europe</option>
-                                    <option value="Asia">Asia</option>
-                                </select>
-                            </div>
+                            <check if="{{ $_SESSION['user']->getPlatform()=='PC'}}">
+                                <true>
+                                    <div class="form-group">
+                                        <label for="tag"><strong>BattleTag</strong></label>
+                                        <input class="form-control" type="text" name="tag" id="tag">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="region"><strong>Region</strong></label>
+                                        <select class="form-control text-center" name="region" id="region">
+                                            <option selected disabled>Select One</option>
+                                            <option value="America">America</option>
+                                            <option value="Europe">Europe</option>
+                                            <option value="Asia">Asia</option>
+                                        </select>
+                                    </div>
+                                </true>
+                            </check>
+                            <check if="{{ $_SESSION['user']->getPlatform()=='PS4'}}">
+                                <true>
+                                    <div class="form-group">
+                                        <label for="tag"><strong>PSN ID</strong></label>
+                                        <input class="form-control" type="text" name="tag" id="tag">
+                                    </div>
+                                </true>
+                            </check>
+                            <check if="{{ $_SESSION['user']->getPlatform()=='Xbox One'}}">
+                                <true>
+                                    <div class="form-group">
+                                        <label for="tag"><strong>Gamertag</strong></label>
+                                        <input class="form-control" type="text" name="tag" id="tag">
+                                    </div>
+                                </true>
+                            </check>
                             <div class="form-group">
                                 <label for="mic"><strong>Communication</strong></label>
                                 <div class="row">
