@@ -62,6 +62,15 @@ function validForm2()
         $isValid = false;
         $f3->set("errors['tag']", 'Please enter a valid id');
     }
+
+    if ($_SESSION['user']->getPlatform() == 'pc')
+    {
+        if(!validRegion($f3->get('region'))) {
+            $isValid = false;
+            $f3->set("errors['region']", 'Please select a valid region');
+        }
+    }
+
     return $isValid;
 }
 
@@ -138,26 +147,27 @@ function validMembership($membership)
  */
 function validTag($tag)
 {
-    global $f3;
-    $isValid = true;
+    $isValid = false;
+    $platform = $_SESSION['user']->getPlatform();
 
-    if ($f3->get('platform') == 'pc') {
+    if ($platform == 'pc') {
         //BattleTag regex
         $regexPattern = "/^[\p{L}\p{Mn}][\p{L}\p{Mn}0-9]{2,11}#[0-9]{4,5}+$/u";
         $isValid = preg_match($regexPattern, $tag);
     }
 
-    if ($f3->get('platform') == 'psn') {
+    elseif ($platform == 'psn') {
         //psn tag regex
         $regexPattern = "/^[a-zA-Z]{1}[a-zA-Z0-9_-]{2,15}$/";
         $isValid = preg_match($regexPattern, $tag);
     }
 
-    if ($f3->get('platform') == 'xbl') {
+    elseif ($platform == 'xbl') {
         //Gamertag regex
         $regexPattern = "/^[a-zA-Z0-9_ ]{0,14}$/";
         $isValid = preg_match($regexPattern, $tag);
     }
+
     return $isValid;
 }
 
