@@ -16,7 +16,6 @@ function validForm1()
     global $f3;
     $isValid = true;
 
-    //TODO: inline error reporting
     if(!validPlatform($f3->get('platform')))
     {
         $isValid = false;
@@ -53,7 +52,6 @@ function validForm2()
 {
     global $f3;
     $isValid = true;
-
 
     if(!validBattleTag($f3->get('battletag'))) {
         $isValid = false;
