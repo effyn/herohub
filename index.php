@@ -75,7 +75,6 @@ $f3->route('GET|POST /register', function($f3) {
 //Define route to second form page user play style settings
 $f3->route('GET|POST /preferences', function($f3) {
 
-    print_r($_SESSION);
     //get data from form - $variable = $_POST['']
     //$battleTag =  $_POST['battletag'];
 
