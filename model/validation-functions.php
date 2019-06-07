@@ -146,4 +146,4 @@ function validBattleTag($battleTag)
 
 //TODO: gamertag and PSN regex, think these will work for
 // gamertag --> "/^[a-zA-Z0-9_ ]{0,14}$/"
-// PSN id --> "/^[a-zA-Z]{1}[a-zA-Z0-9_-]{3,15}$/"
+// PSN id --> "/^[a-zA-Z]{1}[a-zA-Z0-9_-]{2,15}$/"
