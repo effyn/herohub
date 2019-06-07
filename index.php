@@ -102,7 +102,7 @@ $f3->route('GET|POST /preferences', function($f3) {
         //redirect to heroes page
         if (validForm2())
         {
-
+            //TODO: call setters for session user and reroute
         }
     }
 
