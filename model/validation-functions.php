@@ -143,3 +143,7 @@ function validBattleTag($battleTag)
     $regexPattern = "/^[\p{L}\p{Mn}][\p{L}\p{Mn}0-9]{2,11}#[0-9]{4,5}+$/u";
     return preg_match($regexPattern, $battleTag);
 }
+
+//TODO: gamertag and PSN regex, think these will work for
+// gamertag --> "/^[a-zA-Z0-9_ ]{0,14}$/"
+// PSN id --> "/^[a-zA-Z]{1}[a-zA-Z0-9_-]{3,15}$/"
