@@ -53,15 +53,14 @@ Description: This file contains the html structures for the second form of regis
                     <div class="row">
                         <div class="col-2"></div>
                         <div class="col-8">
+                            <!-- TODO: should only display label BattleTag for pc users -->
+                            <!-- TODO: should only display label PSN ID for playstation users -->
+                            <!-- TODO: should only display label Gamertag for playstation users -->
                             <div class="form-group">
-                                <label for="platform"><strong>Platform</strong></label>
-                                <select class="form-control text-center" name="platform" id="platform">
-                                    <option selected disabled>Select One</option>
-                                    <option value="pc">PC</option>
-                                    <option value="ps4">PS4</option>
-                                    <option value="xbox">Xbox One</option>
-                                </select>
+                                <label for="battletag"><strong>BattleTag</strong></label>
+                                <input class="form-control" type="text" name="battletag" id="battletag">
                             </div>
+                            <!-- TODO: Change this to input to wrap in <check if=""> tag - should only display for pc players -->
                             <div class="form-group">
                                 <label for="region"><strong>Player Region</strong></label>
                                 <select class="form-control text-center" name="region" id="region">

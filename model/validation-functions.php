@@ -16,21 +16,6 @@ function validForm1()
     global $f3;
     $isValid = true;
 
-    //check if each of the fields are valid for account form
-    if (!validName($f3->get('fname'))) {
-        $isValid = false;
-        $f3->set("errors['first']", 'Please enter a your first name');
-    }
-
-    if (!validName($f3->get('lname'))) {
-        $isValid = false;
-        $f3->set("errors['last']", 'Please enter your last name');
-    }
-
-    if(!validBattleTag($f3->get('battletag'))) {
-        $isValid = false;
-        $f3->set("errors['battletag']", 'Please enter a valid BattleTag');
-    }
 
     if (!validEmail($f3->get('email'))) {
         $isValid = false;
@@ -51,29 +36,23 @@ function validForm1()
 }
 
 /**
- * Checks to see that a string is all alphabetic
- * and contains a value.
+ * Checks to see that playstyle preferences form
+ * is valid.
  *
- * @param String $name A string to validate
  * @return boolean
  */
-function validName($name)
+function validForm2()
 {
-    //return true if not empty and all alphabetic
-    return !empty($name) && ctype_alpha($name);
-}
+    global $f3;
+    $isValid = true;
 
-/**
- * This function validates that BattleTag is a valid value.
- *
- * @param String BattleTag A BattleTag to validate
- * @return boolean
- */
-function validBattleTag($battleTag)
-{
-    //battle tag regex
-    $regexPattern = "/^[\p{L}\p{Mn}][\p{L}\p{Mn}0-9]{2,11}#[0-9]{4,5}+$/u";
-    return preg_match($regexPattern, $battleTag);
+
+    if(!validBattleTag($f3->get('battletag'))) {
+        $isValid = false;
+        $f3->set("errors['battletag']", 'Please enter a valid BattleTag');
+    }
+
+    return $isValid;
 }
 
 /**
@@ -102,5 +81,16 @@ function validPassword($password)
 }
 
 
-
-
+//TODO: Everything below now goes with form 2 validation
+/**
+ * This function validates that BattleTag is a valid value.
+ *
+ * @param String BattleTag A BattleTag to validate
+ * @return boolean
+ */
+function validBattleTag($battleTag)
+{
+    //battle tag regex
+    $regexPattern = "/^[\p{L}\p{Mn}][\p{L}\p{Mn}0-9]{2,11}#[0-9]{4,5}+$/u";
+    return preg_match($regexPattern, $battleTag);
+}
