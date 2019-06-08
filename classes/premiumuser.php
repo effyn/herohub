@@ -30,10 +30,11 @@ class PremiumUser extends User
      *
      * $heroes must be exactly 3 elements long and contain valid heroes:
      *
-     * array('ashe', 'bastion', 'doomfist', 'dVa', 'genji', 'hanzo', 'junkrat', 'lucio',
-     * 'mccree', 'mei', 'mercy', 'orisa', 'pharah', 'reaper', 'reinhardt',
-     * 'roadhog', 'soldier76', 'sombra', 'symmetra', 'torbjorn', 'tracer',
-     * 'widowmaker', 'winston', 'wreckingBall', 'zarya', 'zenyatta')
+     *  array('ana', 'ashe', 'baptiste', 'bastion', 'brigitte', 'doomfist', 'dVa',
+     * 'genji', 'hanzo', 'junkrat', 'lucio', 'mccree', 'mei', 'mercy', 'moira',
+     * 'orisa', 'pharah', 'reaper', 'reinhardt', 'roadhog', 'soldier76', 'sombra',
+     * 'symmetra', 'torbjorn', 'tracer', 'widowmaker', 'winston', 'wreckingBall',
+     * 'zarya', 'zenyatta')
      *
      * @param array $heroes
      */
