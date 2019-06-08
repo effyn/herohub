@@ -110,6 +110,9 @@ $f3->route('GET|POST /preferences', function($f3) {
         {
             //TODO: call setters for session user and reroute,
             // reroute to summary otherwise if premium reroute to heroes
+
+            //Redirect to heroes
+            $f3->reroute('/heroes');
         }
     }
 

@@ -70,7 +70,15 @@ function validForm2()
         }
     }
 
-    //TODO check for optional fields being valid ok if empty
+    if(!validMic($f3->get('mic'))) {
+        $isValid = false;
+        $f3->set("errors['mic']", 'Select a valid value');
+    }
+
+    if(!validLeadership($f3->get('leadership'))) {
+        $isValid = false;
+        $f3->set("errors['leadership']", 'Select a valid value');
+    }
 
     return $isValid;
 }
@@ -184,7 +192,6 @@ function validTag($tag)
     return $isValid;
 }
 
-
 /**
  * This function validates that a User selected region is valid.
  *
@@ -202,7 +209,29 @@ function validRegion($region)
     return in_array($region, $f3->get('regions'));
 }
 
-//TODO validate communication and leadership - optional fields
+//TODO validate communication and leadership - optional fields, uses default mid value I believe
 
+/**
+ * This function validates a User mic preference.
+ *
+ * @param int $mic Mic preference to validate
+ * @return bool
+ */
+function validMic($mic)
+{
+    return in_array($mic, range(1, 5));
+}
+
+
+/**
+ * This function validates a User leadership preference.
+ *
+ * @param int $leadership preference to validate
+ * @return boolean
+ */
+function validLeadership($leadership)
+{
+    return in_array($leadership, range(-2, 2));
+}
 
 //TODO form 3 validation this is the premium member page

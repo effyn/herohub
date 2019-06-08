@@ -102,7 +102,7 @@ Description: This file contains the html structures for the second form of regis
                                 </true>
                             </check>
                             <div class="form-group">
-                                <label for="mic"><strong>Communication</strong></label>
+                                <label for="mic"><strong>Mic Preference</strong></label>
                                 <div class="row">
                                     <div class="col">
                                         <span>No Mic</span>
@@ -116,7 +116,11 @@ Description: This file contains the html structures for the second form of regis
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <input class="form-control-range" name="mic" id="mic" type="range" min="1" max="5">
+                                        <input value="{{ @mic }}" class="form-control-range"
+                                               name="mic" id="mic" type="range" min="1" max="5">
+                                        <check if="{{ @errors['mic'] }}">
+                                            <small id="micHelp" class="text-danger">{{ @errors['mic'] }}</small>
+                                        </check>
                                     </div>
                                 </div>
                             </div>
@@ -135,7 +139,12 @@ Description: This file contains the html structures for the second form of regis
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <input class="form-control-range" name="leader" id="leader" type="range" min="-2" max="2">
+                                        <input value="{{ @leadership }}" class="form-control-range"
+                                               name="leader" id="leader" type="range" min="-2" max="2">
+                                        <check if="{{ @errors['leadership'] }}">
+                                            <small id="leadershipHelp" class="text-danger">{{ @errors['leadership'] }}
+                                            </small>
+                                        </check>
                                     </div>
                                 </div>
                             </div>
