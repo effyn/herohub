@@ -58,7 +58,7 @@ h2 {
 
 .herohub-nav li.active {
     background-color: var(--maincolor);
-    color: var(--orange);
+    color: var(--grey);
     padding: 10px;
     width: 100vw;
 }
