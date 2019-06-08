@@ -144,13 +144,19 @@ $f3->route('GET /heroes', function($f3) {
         echo $view->render('views/heroes.html');
     } else {
         //Redirect to summary if not a PremiumUser
-        //FIXME this might be confusing later, might want to consider a 403 forbidden
+        //FIXME this might confuse me later so im making a note here
         $f3->reroute('/summary');
     }
 });
 
 //Define route to the third form page user hero preferences
 $f3->route('POST /heroes', function($f3) {
+
+    if (!($_SESSION['user'] instanceof PremiumUser)) {
+        //Redirect to summary if not a PremiumUser
+        //FIXME this might confuse me later so im making a note here
+        $f3->reroute('/summary');
+    }
 
     if (!empty($_POST)) {
         //get data from form -  $variable = $_POST['']
@@ -169,12 +175,35 @@ $f3->route('POST /heroes', function($f3) {
         //redirect to summary page
         if (validForm3()) {
 
-            //TODO: call setters for session user to set new field values need to alter class fields to catch 3 inputs
+            $user = $_SESSION['user'];
+
+            $user->setRole($role);
+
+            $heroes = array();
+
+            if ($hero1 != '')
+            {
+                $heroes[] = $hero1;
+            }
+            if ($hero2 != '')
+            {
+                $heroes[] = $hero2;
+            }
+            if ($hero3 != '')
+            {
+                $heroes[] = $hero3;
+            }
+
+            $user->setHeroes($heroes);
+
+            //Insert the PremiumUser into the db
+            $f3->get('db')->insertUser($user);
 
             //Redirect to summary
             $f3->reroute('/summary');
         }
     }
+
     $view = new Template();
     echo $view->render('views/heroes.html');
 });
