@@ -151,26 +151,32 @@ function validTag($tag)
     $platform = $_SESSION['user']->getPlatform();
 
     if ($platform == 'pc') {
-        //BattleTag regex
+        /* BattleTag regex - first half must be 3-12 characters long, can only contain
+         *                   letters, accented characters, and numbers. Mixed casing
+         *                   allowed. Must contain a pound (#) followed by 5-6 numeric
+         *                   numbers.
+         */
         $regexPattern = "/^[\p{L}\p{Mn}][\p{L}\p{Mn}0-9]{2,11}#[0-9]{4,5}+$/u";
         $isValid = preg_match($regexPattern, $tag);
     }
 
     elseif ($platform == 'psn') {
-        //psn tag regex
+        /* Playstation Network ID regex - can only contain letters, numbers, hyphens,
+         *                  and underscores, must start with a letter, the
+         *                  minimum length 3 characters and the maximum is 16
+         */
         $regexPattern = "/^[a-zA-Z]{1}[a-zA-Z0-9_-]{2,15}$/";
         $isValid = preg_match($regexPattern, $tag);
     }
 
     elseif ($platform == 'xbl') {
-        //Gamertag regex
-        $regexPattern = "/^[a-zA-Z0-9_ ]{0,14}$/";
+        /* Gamertag regex - can only contain letters, numbers, and
+         *                  spaces, and can't begin with a number.
+         *                  The maximum length of a tag is 15 characters.
+         */
+        $regexPattern = "/^[a-zA-Z]{1}[a-zA-Z0-9_ ]{0,14}$/";
         $isValid = preg_match($regexPattern, $tag);
     }
 
     return $isValid;
 }
-
-//TODO: gamertag and PSN regex, think these will work for
-// gamertag --> "/^[a-zA-Z0-9_ ]{0,14}$/"
-// PSN id --> "/^[a-zA-Z]{1}[a-zA-Z0-9_-]{2,15}$/"
