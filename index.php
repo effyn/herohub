@@ -14,7 +14,7 @@ require_once('vendor/autoload.php');
 session_start();
 
 // TODO: remove this line
-//var_dump($_SESSION);
+var_dump($_SESSION);
 
 //Create an instance of the Base class (instantiate Fat-Free)
 $f3 = Base::instance();
@@ -22,10 +22,11 @@ $f3 = Base::instance();
 //Turn on Fat-Free error reporting
 $f3->set('DEBUG', 3);
 
-//TODO: Create Database object here
+// create the database connection, hive variable so that we could get data from views
+$f3->set('db', new Database());
 
 //expected values for form fields
-$f3->set('platforms', array( 'pc' => 'PC', 'psn' => 'PS4', 'xbl' => "Xbox One"));
+$f3->set('platforms', array('pc' => 'PC', 'psn' => 'PS4', 'xbl' => "Xbox One"));
 $f3->set('memberships', 'Sign up for Premium Access and gain preferred character matching!');
 $f3->set('regions', array('America', 'Europe', 'Asia'));
 $f3->set('heroes', array('ana' => 'Ana', 'ashe' => 'Ashe', 'baptiste' => 'Baptiste', 'bastion' => 'Bastion',
@@ -34,7 +35,7 @@ $f3->set('heroes', array('ana' => 'Ana', 'ashe' => 'Ashe', 'baptiste' => 'Baptis
     'moira' => 'Moira', 'orisa' => 'Orisa', 'pharah' => 'Pharah', 'reaper' => 'Reaper', 'reinhardt' => 'Reinhardt',
     'roadhog' => 'Roadhog', 'soldier76' => 'Soldier: 76', 'sombra' => 'Sombra', 'symmetra' => 'Symmetra',
     'torbjorn' => 'Torbjörn', 'tracer' => 'Tracer', 'widowmaker' => 'Widowmaker', 'winston' => 'Winston',
-    'wreckingball' => 'Wrecking Ball', 'zarya' => 'Zarya', 'zenyatta' => 'Zenyatta'));
+    'wreckingBall' => 'Wrecking Ball', 'zarya' => 'Zarya', 'zenyatta' => 'Zenyatta'));
 
 //Define a default route to homepage
 $f3->route('GET /', function() {
