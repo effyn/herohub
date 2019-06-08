@@ -8,7 +8,9 @@ class PremiumUser extends User
     /**
      * PremiumUser constructor.
      *
-     * @param array $_heroes
+     * @param string $platform string
+     * @param string $email string
+     * @param string $passhash string
      */
     public function __construct($platform, $email, $passhash)
     {
@@ -27,12 +29,11 @@ class PremiumUser extends User
      * Sets the hero selections for a PremiumUser.
      *
      * $heroes must be exactly 3 elements long and contain valid heroes:
-     * FIXME: I checked the api special characters cannot pull lucio or trobjorn works without,
-     *       full roster can be pulled api documentation example list was incomplete.
-     * array('bastion', 'dVa', 'genji', 'hanzo', 'junkrat', 'lúcio',
+     *
+     * array('ashe', 'bastion', 'doomfist', 'dVa', 'genji', 'hanzo', 'junkrat', 'lucio',
      * 'mccree', 'mei', 'mercy', 'orisa', 'pharah', 'reaper', 'reinhardt',
-     * 'roadhog', 'soldier76', 'sombra', 'symmetra', 'torbjörn', 'tracer',
-     * 'widowmaker', 'winston', 'zarya', 'zenyatta')
+     * 'roadhog', 'soldier76', 'sombra', 'symmetra', 'torbjorn', 'tracer',
+     * 'widowmaker', 'winston', 'wreckingBall', 'zarya', 'zenyatta')
      *
      * @param array $heroes
      */
