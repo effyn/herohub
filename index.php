@@ -13,9 +13,6 @@ require_once('vendor/autoload.php');
 // Start session
 session_start();
 
-// TODO: remove this line
-var_dump($_SESSION);
-
 //Create an instance of the Base class (instantiate Fat-Free)
 $f3 = Base::instance();
 
@@ -96,6 +93,7 @@ $f3->route('GET|POST /preferences', function($f3) {
         $tag = $_POST['tag'];
         $mic = $_POST['mic'];
         $leadership = $_POST['leader'];
+        $region = null;
 
         //if user is a pc player gather region field
         if ($_SESSION['user']->getPlatform() == 'pc') {
@@ -113,15 +111,23 @@ $f3->route('GET|POST /preferences', function($f3) {
         //redirect to heroes page if PremiumUser
         if (validForm2())
         {
-            //TODO: call setters for session user to set new field values
+            $user = $_SESSION['user'];
+
+            $user->setTag($tag);
+            $user->setRegion($region);
+            $user->setMicPref($mic);
+            $user->setLeaderPref($leadership);
 
             //redirect user based on User type
             if ($_SESSION['user'] instanceof PremiumUser) {
                 //Redirect to heroes form
                 $f3->reroute('/heroes');
             } else {
+                //insert the user in the db
+                $f3->get('db')->insertUser($user);
+
                 //Redirect to summary
-                $f3->reroute('/summary');
+                //$f3->reroute('/summary');
             }
         }
     }
@@ -138,6 +144,7 @@ $f3->route('GET /heroes', function($f3) {
         echo $view->render('views/heroes.html');
     } else {
         //Redirect to summary if not a PremiumUser
+        //FIXME this might be confusing later, might want to consider a 403 forbidden
         $f3->reroute('/summary');
     }
 });
