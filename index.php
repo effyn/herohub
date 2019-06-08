@@ -113,7 +113,7 @@ $f3->route('GET|POST /preferences', function($f3) {
         //redirect to heroes page if PremiumUser
         if (validForm2())
         {
-            //TODO: call setters for session user and reroute
+            //TODO: call setters for session user to set new field values
 
             //redirect user based on User type
             if ($_SESSION['user'] instanceof PremiumUser) {
@@ -144,7 +144,6 @@ $f3->route('GET /heroes', function($f3) {
 
 //Define route to the third form page user hero preferences
 $f3->route('POST /heroes', function($f3) {
-    //TODO: only premium access members see this route
 
     if (!empty($_POST)) {
         //get data from form -  $variable = $_POST['']
@@ -163,7 +162,7 @@ $f3->route('POST /heroes', function($f3) {
         //redirect to summary page
         if (validForm3()) {
 
-            //TODO set session
+            //TODO: call setters for session user to set new field values need to alter class fields to catch 3 inputs
 
             //Redirect to summary
             $f3->reroute('/summary');
