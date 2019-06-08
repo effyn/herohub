@@ -27,7 +27,7 @@ $f3->set('DEBUG', 3);
 
 //expected values for form fields
 $f3->set('platforms', array( 'pc' => 'PC', 'psn' => 'PS4', 'xbl' => "Xbox One"));
-$f3->set('memberships', 'Sign up for a Premium Access and gain preferred character matching!');
+$f3->set('memberships', 'Sign up for Premium Access and gain preferred character matching!');
 $f3->set('regions', array('America', 'Europe', 'Asia'));
 //TODO define character drop down expect values
 
