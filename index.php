@@ -29,7 +29,13 @@ $f3->set('DEBUG', 3);
 $f3->set('platforms', array( 'pc' => 'PC', 'psn' => 'PS4', 'xbl' => "Xbox One"));
 $f3->set('memberships', 'Sign up for Premium Access and gain preferred character matching!');
 $f3->set('regions', array('America', 'Europe', 'Asia'));
-//TODO define character drop down expect values
+$f3->set('heroes', array('ana' => 'Ana', 'ashe' => 'Ashe', 'baptiste' => 'Baptiste', 'bastion' => 'Bastion',
+    'brigitte' => 'Brigitte', 'dVa' => 'D.Va', 'doomfist' => 'Doomfist', 'genji' => 'Genji', 'hanzo' => 'Hanzo',
+    'junkrat' => 'Junkrat', 'lucio' => 'Lúcio', 'mccree' => 'McCree', 'mei' => 'Mei', 'mercy' => 'Mercy',
+    'moira' => 'Moira', 'orisa' => 'Orisa', 'pharah' => 'Pharah', 'reaper' => 'Reaper', 'reinhardt' => 'Reinhardt',
+    'roadhog' => 'Roadhog', 'soldier76' => 'Soldier: 76', 'sombra' => 'Sombra', 'symmetra' => 'Symmetra',
+    'torbjorn' => 'Torbjörn', 'tracer' => 'Tracer', 'widowmaker' => 'Widowmaker', 'winston' => 'Winston',
+    'wreckingball' => 'Wrecking Ball', 'zarya' => 'Zarya', 'zenyatta' => 'Zenyatta'));
 
 //Define a default route to homepage
 $f3->route('GET /', function() {
@@ -92,7 +98,7 @@ $f3->route('GET|POST /preferences', function($f3) {
         $leadership = $_POST['leader'];
 
         //if user is a pc player gather region field
-        if ($_SESSION['user']->getPlatform() == 'pc') {  //FIXME this was what was causing the error
+        if ($_SESSION['user']->getPlatform() == 'pc') {
             $region = $_POST['region'];
             //set to hive here
             $f3->set('region', $region);
@@ -107,11 +113,16 @@ $f3->route('GET|POST /preferences', function($f3) {
         //redirect to heroes page if PremiumUser
         if (validForm2())
         {
-            //TODO: call setters for session user and reroute,
-            // reroute to summary otherwise if premium reroute to heroes
+            //TODO: call setters for session user and reroute
 
-            //Redirect to heroes
-            $f3->reroute('/heroes');
+            //redirect user based on User type
+            if ($_SESSION['user'] instanceof PremiumUser) {
+                //Redirect to heroes form
+                $f3->reroute('/heroes');
+            } else {
+                //Redirect to summary
+                $f3->reroute('/summary');
+            }
         }
     }
 
@@ -119,16 +130,45 @@ $f3->route('GET|POST /preferences', function($f3) {
     echo $view->render('views/preferences.html');
 });
 
-//Define route to the third form page user player preferences
-$f3->route('GET|POST /heroes', function() {
+//Define route to the third form page user hero preferences
+$f3->route('GET /heroes', function($f3) {
+
+    if ($_SESSION['user'] instanceof PremiumUser) {
+        $view = new Template();
+        echo $view->render('views/heroes.html');
+    } else {
+        //Redirect to summary if not a PremiumUser
+        $f3->reroute('/summary');
+    }
+});
+
+//Define route to the third form page user hero preferences
+$f3->route('POST /heroes', function($f3) {
     //TODO: only premium access members see this route
 
-    //get data from form -  $variable = $_POST['']
+    if (!empty($_POST)) {
+        //get data from form -  $variable = $_POST['']
+        $role = $_POST['role'];
+        $hero1 = $_POST['preferredchar1'];
+        $hero2 = $_POST['preferredchar2'];
+        $hero3 = $_POST['preferredchar3'];
 
-    //add data to the hive - $f3->set('', $variable)
+        //add data to the hive - $f3->set('', $variable)
+        $f3->set('role', $role);
+        $f3->set('hero1', $hero1);
+        $f3->set('hero2', $hero2);
+        $f3->set('hero3', $hero3);
 
-    //if valid add to session (valid form) set session to variable
+        //if valid add to session (valid form) set session to variable
         //redirect to summary page
+        if (validForm3()) {
+
+            //TODO set session
+
+            //Redirect to summary
+            $f3->reroute('/summary');
+        }
+    }
     $view = new Template();
     echo $view->render('views/heroes.html');
 });

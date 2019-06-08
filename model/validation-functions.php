@@ -4,7 +4,7 @@
 //Description: This file contains the validation functions for the...
 
 /**
- * Checks to see that account registration form
+ * This function checks to see that account registration form
  * is valid.
  *
  * @return boolean
@@ -46,7 +46,7 @@ function validForm1()
 }
 
 /**
- * Checks to see that playstyle preferences form
+ * This function checks to see that playstyle preferences form
  * is valid.
  *
  * @return boolean
@@ -83,7 +83,41 @@ function validForm2()
     return $isValid;
 }
 
-//form1 validation functions
+/**
+ * This function checks to see that hero preferences form
+ * is valid.
+ *
+ * @return boolean
+ */
+function validForm3()
+{
+    global $f3;
+    $isValid = true;
+
+    //if priority is valid
+    if (!validRole($f3->get('role'))) {
+        $isValid = false;
+        $f3->set("errors['role']", 'Select a valid role');
+    }
+
+    //if hero 1 is valid
+    if (!validHero($f3->get('hero1'))) {
+        $isValid = false;
+        $f3->set("errors['hero1']", 'Select a valid hero');
+    }
+    //if hero 2 is valid
+    if (!validHero($f3->get('hero2'))) {
+        $isValid = false;
+        $f3->set("errors['hero2']", 'Select a valid hero');
+    }
+
+    //if hero 3 is valid
+    if (!validHero($f3->get('hero3'))) {
+        $isValid = false;
+        $f3->set("errors['hero3']", 'Select a valid hero');
+    }
+    return $isValid;
+}
 
 /**
  * This function validates that a platform is valid
@@ -147,9 +181,6 @@ function validMembership($membership)
     return $isValid;
 }
 
-
-//Everything below goes with form 2 validation
-
 /**
  * This function validates that tag is a valid value.
  *
@@ -209,8 +240,6 @@ function validRegion($region)
     return in_array($region, $f3->get('regions'));
 }
 
-//TODO validate communication and leadership - optional fields, uses default mid value I believe
-
 /**
  * This function validates a User mic preference.
  *
@@ -221,7 +250,6 @@ function validMic($mic)
 {
     return in_array($mic, range(1, 5));
 }
-
 
 /**
  * This function validates a User leadership preference.
@@ -234,4 +262,25 @@ function validLeadership($leadership)
     return in_array($leadership, range(-2, 2));
 }
 
-//TODO form 3 validation this is the premium member page
+/**
+ * This function validates a Premium User role priority.
+ *
+ * @param int $role Role Priority to validate
+ * @return boolean
+ */
+function validRole($role)
+{
+    return in_array($role, range(1, 3));
+}
+
+/**
+ * This function validates a PremiumUser selected hero.
+ *
+ * @param String $hero Selected hero to validate.
+ * @return bool
+ */
+function validHero($hero)
+{
+    global $f3;
+    return array_key_exists($hero, $f3->get('heroes'));
+}

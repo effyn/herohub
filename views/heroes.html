@@ -47,8 +47,7 @@ Description: This file contains the html structures for the third form of regist
                 <br>
                 <h1 class="text-center">HERO PREFERENCES</h1>
                 <hr>
-                <!--TODO: change back to # POST this form, changed to style summary page -->
-                <form action="summary" method="post">
+                <form action="#" method="post">
                     <div class="row">
                         <div class="col-2"></div>
                         <div class="col-8">
@@ -56,45 +55,76 @@ Description: This file contains the html structures for the third form of regist
                                 <label for="role"><strong>Role Priority</strong></label>
                                 <div class="row">
                                     <div class="col">
-                                        <span>Healer</span>
+                                        <span>Damage</span>
                                     </div>
                                     <div class="col text-center">
                                         <span>Tank</span>
                                     </div>
                                     <div class="col text-right">
-                                        <span>Damage</span>
+                                        <span>Healer</span>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <!-- TODO: should this range be 1-3 or 1-5? -->
-                                        <input class="form-control-range" name="role" id="role" type="range" min="1" max="3">
+                                        <!-- NOTE: Healer has highest weight of 3, tank 2, damage 1
+                                              field defaults to mid point of range
+                                              Damage should be the default if user does not select a priority
+                                              but did not think it deserved a higher weight than a healer/tank-->
+                                        <input class="form-control-range" name="role" id="role" type="range"
+                                               min="1" max="3">
+                                        <check if="{{ @errors['role'] }}">
+                                            <small id="roleHelp" class="text-danger">{{ @errors['role'] }}</small>
+                                        </check>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="preferredchar1"><strong>Preferred Character</strong></label>
+                                <label for="preferredchar1"><strong>Preferred Hero</strong></label>
                                 <select class="form-control text-center" name="preferredchar1" id="preferredchar1">
-                                    <!-- TODO: fill in roster -->
                                     <option selected disabled>Select First Choice</option>
-                                    <option value="">Need to fill in roster</option>
+                                    <repeat group="{{ @heroes }}" key="{{ @key }}" value="{{ @heroOption }}">
+                                        <option value="{{ @key}}"
+                                        <check if="{{ @hero == @key }}">
+                                            selected
+                                        </check>
+                                        >{{ @heroOption }}</option>
+                                    </repeat>
                                 </select>
+                                <check if="{{ @errors['hero1'] }}">
+                                    <small id="hero1Help" class="text-danger">{{ @errors['hero1'] }}</small>
+                                </check>
                             </div>
                             <div class="form-group">
                                 <label for="preferredchar2"></label>
                                 <select class="form-control text-center" name="preferredchar2" id="preferredchar2">
-                                    <!-- TODO: fill in roster -->
                                     <option selected disabled>Select Second Choice</option>
-                                    <option value="">Need to fill in roster</option>
+                                    <repeat group="{{ @heroes }}" key="{{ @key }}" value="{{ @heroOption }}">
+                                        <option value="{{ @key}}"
+                                        <check if="{{ @hero == @key }}">
+                                            selected
+                                        </check>
+                                        >{{ @heroOption }}</option>
+                                    </repeat>
                                 </select>
+                                <check if="{{ @errors['hero2'] }}">
+                                    <small id="hero2Help" class="text-danger">{{ @errors['hero2'] }}</small>
+                                </check>
                             </div>
                             <div class="form-group">
                                 <label for="preferredchar3"></label>
                                 <select class="form-control text-center" name="preferredchar3" id="preferredchar3">
-                                    <!-- TODO: fill in roster -->
                                     <option selected disabled>Select Third Choice</option>
-                                    <option value="">Need to fill in roster</option>
+                                    <repeat group="{{ @heroes }}" key="{{ @key }}" value="{{ @heroOption }}">
+                                        <option value="{{ @key}}"
+                                        <check if="{{ @hero == @key }}">
+                                            selected
+                                        </check>
+                                        >{{ @heroOption }}</option>
+                                    </repeat>
                                 </select>
+                                <check if="{{ @errors['hero3'] }}">
+                                    <small id="hero3Help" class="text-danger">{{ @errors['hero3'] }}</small>
+                                </check>
                             </div>
                         </div>
                         <div class="col-2"></div>
