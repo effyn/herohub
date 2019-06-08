@@ -92,9 +92,8 @@ $f3->route('GET|POST /preferences', function($f3) {
         $leadership = $_POST['leader'];
 
         //if user is a pc player gather region field
-        if ($f3->get('platform') == 'pc') {
-            $region =  $_POST['region'];
-
+        if ($_SESSION['user']->getPlatform() == 'pc') {  //FIXME this was what was causing the error
+            $region = $_POST['region'];
             //set to hive here
             $f3->set('region', $region);
         }

@@ -56,7 +56,7 @@ Description: This file contains the html structures for the second form of regis
                                 <true>
                                     <div class="form-group">
                                         <label for="tag"><strong>BattleTag</strong></label>
-                                        <input class="form-control" type="text" name="tag" id="tag">
+                                        <input class="form-control" type="text" name="tag" id="tag" value="{{ @tag }}">
                                         <check if="{{ @errors['tag'] }}">
                                             <small id="tagHelp" class="text-danger">{{ @errors['tag'] }}</small>
                                         </check>
@@ -83,7 +83,7 @@ Description: This file contains the html structures for the second form of regis
                                 <true>
                                     <div class="form-group">
                                         <label for="tag"><strong>Playstation Network ID</strong></label>
-                                        <input class="form-control" type="text" name="tag" id="tag2">
+                                        <input class="form-control" type="text" name="tag" id="tag2" value="{{ @tag }}}">
                                         <check if="{{ @errors['tag'] }}">
                                             <small id="tag2Help" class="text-danger">{{ @errors['tag'] }}</small>
                                         </check>
@@ -94,7 +94,7 @@ Description: This file contains the html structures for the second form of regis
                                 <true>
                                     <div class="form-group">
                                         <label for="tag"><strong>Gamertag</strong></label>
-                                        <input class="form-control" type="text" name="tag" id="tag3">
+                                        <input class="form-control" type="text" name="tag" id="tag3" value="{{ @tag }}">
                                         <check if="{{ @errors['tag'] }}">
                                             <small id="tag3Help" class="text-danger">{{ @errors['tag'] }}</small>
                                         </check>
