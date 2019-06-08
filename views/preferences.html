@@ -65,17 +65,24 @@ Description: This file contains the html structures for the second form of regis
                                         <label for="region"><strong>Region</strong></label>
                                         <select class="form-control text-center" name="region" id="region">
                                             <option selected disabled>Select One</option>
-                                            <option value="America">America</option>
-                                            <option value="Europe">Europe</option>
-                                            <option value="Asia">Asia</option>
+                                            <repeat group="{{ @regions }}" value="{{ @regionOption }}">
+                                                <option
+                                                <check if="{{ @region == @regionOption }}">
+                                                    selected
+                                                </check>
+                                                >{{ @regionOption }}</option>
+                                            </repeat>
                                         </select>
+                                        <check if="{{ @errors['region'] }}">
+                                            <small id="regionHelp" class="text-danger">{{ @errors['region'] }}</small>
+                                        </check>
                                     </div>
                                 </true>
                             </check>
                             <check if="{{ $_SESSION['user']->getPlatform()=='psn'}}">
                                 <true>
                                     <div class="form-group">
-                                        <label for="tag"><strong>PSN ID</strong></label>
+                                        <label for="tag"><strong>Playstation Network ID</strong></label>
                                         <input class="form-control" type="text" name="tag" id="tag2">
                                         <check if="{{ @errors['tag'] }}">
                                             <small id="tag2Help" class="text-danger">{{ @errors['tag'] }}</small>

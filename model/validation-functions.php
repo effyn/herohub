@@ -3,8 +3,6 @@
 //Date: TODO: fill in due date
 //Description: This file contains the validation functions for the...
 
-//TODO: write validation functions...
-
 /**
  * Checks to see that account registration form
  * is valid.
@@ -63,6 +61,7 @@ function validForm2()
         $f3->set("errors['tag']", 'Please enter a valid id');
     }
 
+    //call validation for region field for pc players only
     if ($_SESSION['user']->getPlatform() == 'pc')
     {
         if(!validRegion($f3->get('region'))) {
@@ -71,8 +70,12 @@ function validForm2()
         }
     }
 
+    //TODO check for optional fields being valid ok if empty
+
     return $isValid;
 }
+
+//form1 validation functions
 
 /**
  * This function validates that a platform is valid
@@ -137,7 +140,8 @@ function validMembership($membership)
 }
 
 
-//TODO: Everything below now goes with form 2 validation
+//Everything below goes with form 2 validation
+
 /**
  * This function validates that tag is a valid value.
  *
@@ -177,6 +181,28 @@ function validTag($tag)
         $regexPattern = "/^[a-zA-Z]{1}[a-zA-Z0-9_ ]{0,14}$/";
         $isValid = preg_match($regexPattern, $tag);
     }
-
     return $isValid;
 }
+
+
+/**
+ * This function validates that a User selected region is valid.
+ *
+ * @param $region User region to validate
+ * @return boolean
+ */
+function validRegion($region)
+{
+    global $f3;
+
+    //region is NOT an optional field
+    if (empty($region)) {
+        return false;
+    }
+    return in_array($region, $f3->get('regions'));
+}
+
+//TODO validate communication and leadership - optional fields
+
+
+//TODO form 3 validation this is the premium member page
