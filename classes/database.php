@@ -18,7 +18,7 @@ class Database
     ')VALUES(' .
     ':id, :role, :hero1, :hero2, :hero3);';
 
-    private $db;
+    private $_db;
 
     public function __construct__()
     {
@@ -27,7 +27,7 @@ class Database
 
     private function connect()
     {
-        $this->db = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
+        $this->_db = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
     }
 
     /**
@@ -37,9 +37,7 @@ class Database
      */
     public function insertUser($user)
     {
-        global $f3;
-        $db = $f3->get('db');
-
+        $db = $this->_db;
         $stmt = $db->prepare(self::$insertUserSQL);
 
         //TODO: Bind params and execute
@@ -76,12 +74,10 @@ class Database
         //TODO: describe params in a comment here,
         // keys should match the names of fields and assume values are valid
 
-        global $f3;
-        $db = $f3->get('db');
 
         //FIXME: The statement should be generated based on the params that are given
+        $db = $this->_db;
         $updateUserSQL = '';
-
         $stmt = $db->prepare($updateUserSQL);
 
         //TODO: impl,
