@@ -1,4 +1,7 @@
 <?php
+//Name: Alicia Buehner, Evan Wheeler
+//Date: 6/10/19
+//Description: This file defines the standard User class that has access to base features
 
 class User
 {

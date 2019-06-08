@@ -1,4 +1,7 @@
 <?php
+//Name: Alicia Buehner, Evan Wheeler
+//Date: 6/10/19
+//Description: This file defines the connection to the DB and the queries for the app
 
 // should work for anyone with a config.php in their user directory
 require_once "/home/{$_SERVER['USER']}/config.php";

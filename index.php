@@ -1,8 +1,7 @@
 <?php
 //Name: Alicia Buehner, Evan Wheeler
-//Date: TODO: fill in due dates - Project due June 10th @ 10:00am
+//Date: 6/10/19
 //Description: This file contains the index page for the HeroHub IT328 Final Project
-//TODO: MAKE SURE ALL FILES HAVE A HEADER COMMENTS, also IMGs of Database or file push to git??
 
 //Turn on error reporting
 ini_set('display_errors', 1);

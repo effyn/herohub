@@ -1,4 +1,7 @@
 <?php
+//Name: Alicia Buehner, Evan Wheeler
+//Date: 6/10/19
+//Description: This file defines the Premium User class that has access to hero preferences
 
 class PremiumUser extends User
 {
