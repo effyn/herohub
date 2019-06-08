@@ -10,7 +10,7 @@ CREATE TABLE `herohub-user` (
 );
 
 CREATE TABLE `herohub-premiumuser` (
-    id int AUTO_INCREMENT PRIMARY KEY,
+    id int PRIMARY KEY NOT NULL,
     role int NOT NULL,
     hero1 VARCHAR(32),
     hero2 VARCHAR(32),
