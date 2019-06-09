@@ -20,14 +20,20 @@ class Database
 
     private $_db;
 
-    public function __construct__()
+    public function __construct()
     {
         $this->connect();
     }
 
     private function connect()
     {
-        $this->_db = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
+        try {
+            $this->_db = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
+        }
+
+        catch (PDOException $ex) {
+            echo $ex->getMessage();
+        }
     }
 
     /**
@@ -37,29 +43,71 @@ class Database
      */
     public function insertUser($user)
     {
-        $db = $this->_db;
-        $stmt = $db->prepare(self::$insertUserSQL);
+        try {
+            $db = $this->_db;
+            $stmt = $db->prepare(self::$insertUserSQL);
 
-        //TODO: Bind params and execute
+            $platform = $user->getPlatform();
+            $email = $user->getEmail();
+            $passhash = $user->getPasshash();
+            $tag = $user->getTag();
+            $region = $user->getRegion();
+            $micPref = $user->getMicPref();
+            $leaderPref = $user->getLeaderPref();
 
-        //FIXME: old code from PDO to help me remember how to do this
-//        $sid = $_POST['sid'];
-//        $last = $_POST['last'];
-//        $first = $_POST['first'];
-//        $birthdate = date('Y-m-d', strtotime($_POST['birthdate']));
-//        $gpa = $_POST['gpa'];
-//        $advisor = $_POST['advisor'];
-//
-//        $stmt->bindParam(':sid', $sid, PDO::PARAM_STR);
-//        $stmt->bindParam(':last', $last, PDO::PARAM_STR);
-//        $stmt->bindParam(':first', $first, PDO::PARAM_STR);
-//        $stmt->bindParam(':birthdate', $birthdate, PDO::PARAM_STR);
-//        $stmt->bindParam(':gpa', $gpa, PDO::PARAM_STR);
-//        $stmt->bindParam(':advisor', $advisor, PDO::PARAM_STR);
-//        $stmt->execute();
+            $stmt->bindParam(':platform', $platform, PDO::PARAM_STR);
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            $stmt->bindParam(':passhash', $passhash, PDO::PARAM_STR);
+            $stmt->bindParam(':tag', $tag, PDO::PARAM_STR);
+            $stmt->bindParam(':region', $region, PDO::PARAM_STR);
+            $stmt->bindParam(':micpref', $micPref, PDO::PARAM_INT);
+            $stmt->bindParam(':leaderpref', $leaderPref, PDO::PARAM_INT);
 
-        // TODO: remove this line after making sure this works
-        var_dump($user);
+            $stmt->execute();
+
+            if ($user instanceof PremiumUser)
+            {
+                $stmt = $db->prepare(self::$insertPremiumUserSQL);
+
+                $id = $this->_db->lastInsertId();
+                $role = $user->getRole();
+
+                $heroes = $user->getHeroes();
+
+                $hero1 = $heroes[0];
+                $hero2 = $heroes[1];
+                $hero3 = $heroes[2];
+
+                $heroes = array();
+
+                if (isset($heroes[0]))
+                {
+                    $hero1 = $heroes[0];
+                }
+
+                if (isset($heroes[1]))
+                {
+                    $hero2 = $heroes[1];
+                }
+
+                if (isset($heroes[2]))
+                {
+                    $hero3 = $heroes[2];
+                }
+
+                $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+                $stmt->bindParam(':role', $role, PDO::PARAM_INT);
+                $stmt->bindParam(':hero1', $hero1, PDO::PARAM_STR);
+                $stmt->bindParam(':hero2', $hero2, PDO::PARAM_STR);
+                $stmt->bindParam(':hero3', $hero3, PDO::PARAM_STR);
+
+                $stmt->execute();
+            }
+        }
+
+        catch (PDOException $ex) {
+            echo $ex->getMessage();
+        }
     }
 
     /**
