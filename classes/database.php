@@ -105,7 +105,7 @@ class Database
                 $stmt->execute();
             }
 
-            //FIXME note: if id is not -1, the user is considered DONE.
+            //FIXME note: if id is not 0, the user is considered DONE.
             // use this logic to determine whether or not a row should be inserted or updated
             $user->setId($id);
         }
