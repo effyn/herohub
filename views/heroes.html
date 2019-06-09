@@ -133,7 +133,14 @@ Description: This file contains the html structures for the third form of regist
                     <div class="row">
                         <div class="col-4"></div>
                         <div class="col-4 text-center">
-                            <input class="btn-lg btn-primary btn-block" type="submit" value="Submit Registration">
+                            <check if="{{isset($_SESSION['user']) && $_SESSION['user']->getId() != 0}}">
+                                <true>
+                                    <input class="btn-lg btn-primary btn-block" type="submit" value="Save Changes">
+                                </true>
+                                <false>
+                                    <input class="btn-lg btn-primary btn-block" type="submit" value="Submit Registration">
+                                </false>
+                            </check>
                         </div>
                         <div class="col-4"></div>
                     </div>
