@@ -62,8 +62,8 @@ function validForm2()
     }
 
     //call validation for region field for pc players only
-    if ($_SESSION['user']->getPlatform() == 'pc')
-    {
+    if ($_SESSION['user']->getPlatform() == 'pc' && !(isset($_SESSION['platform']) ||
+        $_SESSION['platform'] == 'pc')) {
         if(!validRegion($f3->get('region'))) {
             $isValid = false;
             $f3->set("errors['region']", 'Please select a valid region');
@@ -193,6 +193,11 @@ function validTag($tag)
     $isValid = false;
     $platform = $_SESSION['user']->getPlatform();
 
+    if (isset($_SESSION['platform']))
+    {
+        $platform = $_SESSION['platform'];
+    }
+
     if ($platform == 'pc') {
         /* BattleTag regex - first half must be 3-12 characters long, can only contain
          *                   letters, accented characters, and numbers. Mixed casing
@@ -220,6 +225,7 @@ function validTag($tag)
         $regexPattern = "/^[a-zA-Z]{1}[a-zA-Z0-9_ ]{0,14}$/";
         $isValid = preg_match($regexPattern, $tag);
     }
+
     return $isValid;
 }
 
