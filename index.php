@@ -41,7 +41,7 @@ $f3->route('GET /', function() {
 });
 
 //Define route to the first form page user registration information
-$f3->route('GET|POST /register', function($f3) {
+$f3->route('GET|POST /account', function($f3) {
 
     //if post is not empty
     if (!empty($_POST)) {
