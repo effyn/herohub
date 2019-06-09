@@ -80,7 +80,7 @@ $f3->route('GET|POST /account', function($f3) {
     }
 
     $view = new Template();
-    echo $view->render('views/register.html');
+    echo $view->render('views/account.html');
 });
 
 //Define route to second form page user play style settings
