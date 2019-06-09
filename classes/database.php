@@ -18,6 +18,14 @@ class Database
     ')VALUES(' .
     ':id, :role, :hero1, :hero2, :hero3);';
 
+    private static $updateAccountSQL = 'UPDATE `herohub-user` ' .
+    'SET platform = :platform, email = :email, passhash = :passhash ' .
+    'WHERE id = :id;';
+
+    private static $updatePreferencesSQL = 'UPDATE `herohub-user` ' .
+    'SET tag = :tag, region = :region, micpref = :micpref, leaderpref = :leaderpref ' .
+    'WHERE id = :id;';
+
     private $_db;
 
     public function __construct()
@@ -116,25 +124,59 @@ class Database
     }
 
     /**
-     * Updates a User that exists in the database.
+     * Updates a User's account info.
      *
-     * @param $user User the user to update
-     * @param $params array associative array of supported parameters
-     * @see comments
+     * @param $id int The ID of the user to update
+     * @param $platform string The user's game platform
+     * @param $email string The user's email address
+     * @param $passhash string The new password hash for the user
      */
-    public function updateUser($user, $params)
+    public function updateAccount($id, $platform, $email, $passhash)
     {
-        //TODO: describe params in a comment here,
-        // keys should match the names of fields and assume values are valid
+        try {
+            $db = $this->_db;
+            $stmt = $db->prepare(self::$updateAccountSQL);
 
-        //FIXME: The statement should be generated based on the params that are given
-        $db = $this->_db;
-        $updateUserSQL = '';
-        $stmt = $db->prepare($updateUserSQL);
+            $stmt->bindParam(':platform', $platform, PDO::PARAM_STR);
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            $stmt->bindParam(':passhash', $passhash, PDO::PARAM_STR);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
-        //TODO: impl,
-        // use instanceof to determine whether to update a row
-        // in herohub-premiumuser as well
+            $stmt->execute();
+        }
+
+        catch (PDOException $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
+    /**
+     * Updates a User's preferences.
+     *
+     * @param $id int The ID of the user to update
+     * @param $tag string The user's tag, validated based on platform
+     * @param $region string The user's game region
+     * @param $micPref int The user's microphone preference
+     * @param $leaderPref int The user's leader preference
+     */
+    public function updatePreferences($id, $tag, $region, $micPref, $leaderPref)
+    {
+        try {
+            $db = $this->_db;
+            $stmt = $db->prepare(self::$updatePreferencesSQL);
+
+            $stmt->bindParam(':tag', $tag, PDO::PARAM_STR);
+            $stmt->bindParam(':region', $region, PDO::PARAM_STR);
+            $stmt->bindParam(':micpref', $micPref, PDO::PARAM_INT);
+            $stmt->bindParam(':leaderpref', $leaderPref, PDO::PARAM_INT);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+            $stmt->execute();
+        }
+
+        catch (PDOException $ex) {
+            echo $ex->getMessage();
+        }
     }
 
     /**
