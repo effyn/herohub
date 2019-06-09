@@ -35,16 +35,30 @@ $f3->set('heroes', array('ana' => 'Ana', 'ashe' => 'Ashe', 'baptiste' => 'Baptis
     'wreckingBall' => 'Wrecking Ball', 'zarya' => 'Zarya', 'zenyatta' => 'Zenyatta'));
 
 //Define a default route to homepage
-$f3->route('GET /', function() {
+$f3->route('GET /', function()
+{
     $view = new Template();
     echo $view->render('views/homepage.html');
 });
 
 //Define route to the first form page user registration information
-$f3->route('GET|POST /account', function($f3) {
+$f3->route('GET|POST /account', function($f3)
+{
+    //variable that indicates whether a user is complete
+    $loggedIn = isset($_SESSION['user']) && $_SESSION['user']->getId() != 0;
+
+    if (empty($_POST)) {
+        if ($loggedIn) {
+            $user = $_SESSION['user'];
+
+            $f3->set('platform', $user->getPlatform());
+            $f3->set('email', $user->getEmail());
+            $f3->set('membership', $user instanceof PremiumUser ? $f3->get('memberships') : '');
+        }
+    }
 
     //if post is not empty
-    if (!empty($_POST)) {
+    else {
         //get data from form - $variable = $_POST['']
         $platform = $_POST['platform'];
         $email =  $_POST['email'];
@@ -60,22 +74,37 @@ $f3->route('GET|POST /account', function($f3) {
         $f3->set('membership', $membership);
 
         //if valid add to session (valid form) set session to variable
-            //redirect to preferences page
+        //redirect to preferences page
         if (validForm1()) {
             //hash password after valid check
-            //FIXME this is string(60) but it can change depending on the PHP version
-            //  so store in the database as VARCHAR(255)
             $pw = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-            if (!empty($membership)) {
-                $newUser = new PremiumUser($platform, $email, $pw);
-            } else {
-                $newUser = new User($platform, $email, $pw);
-            }
-            $_SESSION['user'] = $newUser;
+            if ($loggedIn) {
+                if ($platform != $_SESSION['user']->getPlatform()) {
+                    // we need to update the tag if the platform changed
+                    $_SESSION['platform'] = $platform;
+                    $_SESSION['email'] = $email;
+                    $_SESSION['passhash'] = $pw;
 
-            //Redirect to preferences
-            $f3->reroute('/preferences');
+                   $f3->reroute('/preferences');
+                }
+
+                // call the update function
+                $f3->get('db')->updateAccount($_SESSION['user']->getId(), $platform, $email, $pw);
+
+                // and redirect them back to the dashboard
+                $f3->reroute('/dashboard');
+            } else {
+                if (!empty($membership)) {
+                    $newUser = new PremiumUser($platform, $email, $pw);
+                } else {
+                    $newUser = new User($platform, $email, $pw);
+                }
+                $_SESSION['user'] = $newUser;
+
+                //Redirect to preferences
+                $f3->reroute('/preferences');
+            }
         }
     }
 
@@ -84,19 +113,32 @@ $f3->route('GET|POST /account', function($f3) {
 });
 
 //Define route to second form page user play style settings
-$f3->route('GET|POST /preferences', function($f3) {
+$f3->route('GET|POST /preferences', function($f3)
+{
+    //variable that indicates whether a user is complete
+    $loggedIn = isset($_SESSION['user']) && $_SESSION['user']->getId() != 0;
 
-    // if post is not empty
-    if (!empty($_POST)) {
+    if (empty($_POST)) {
+        if ($loggedIn) {
+            $user = $_SESSION['user'];
 
-        //get data from form - $variable = $_POST['']
+            $f3->set('tag', $user->getTag());
+            $f3->set('mic', $user->getMicPref());
+            $f3->set('leadership', $user->getLeaderPref());
+            $f3->set('region', $user->getRegion());
+        }
+    // if post data was supplied
+    } else {
+        // get data from form - $variable = $_POST['']
         $tag = $_POST['tag'];
         $mic = $_POST['mic'];
         $leadership = $_POST['leader'];
         $region = null;
 
-        //if user is a pc player gather region field
-        if ($_SESSION['user']->getPlatform() == 'pc') {
+        //if user is a pc player or is switching to pc
+        if ($_SESSION['user']->getPlatform() == 'pc' && !(isset($_SESSION['platform']) ||
+            $_SESSION['platform'] == 'pc')) {
+            //gather region field
             $region = $_POST['region'];
             //set to hive here
             $f3->set('region', $region);
@@ -109,14 +151,36 @@ $f3->route('GET|POST /preferences', function($f3) {
 
         //if valid add to session (valid form) set session to variable
         //redirect to heroes page if PremiumUser
-        if (validForm2())
-        {
+        if (validForm2()) {
             $user = $_SESSION['user'];
 
             $user->setTag($tag);
             $user->setRegion($region);
             $user->setMicPref($mic);
             $user->setLeaderPref($leadership);
+
+            if ($loggedIn) {
+                if (isset($_SESSION['platform'])) {
+                    // call the update function
+                    $f3->get('db')->updateAccount(
+                        $_SESSION['user']->getId(), $_SESSION['platform'],
+                        $_SESSION['email'], $_SESSION['passhash']);
+
+                    $user->setPlatform($_SESSION['platform']);
+                    $user->setEmail($_SESSION['email']);
+                    $user->setPasshash($_SESSION['passhash']);
+
+                    unset($_SESSION['platform']);
+                    unset($_SESSION['email']);
+                    unset($_SESSION['passhash']);
+                }
+
+                // call the update function
+                $f3->get('db')->updatePreferences($_SESSION['user']->getId(), $tag, $region, $mic, $leadership);
+
+                // and redirect them back to the dashboard
+                $f3->reroute('/dashboard');
+            }
 
             //redirect user based on User type
             if ($_SESSION['user'] instanceof PremiumUser) {
@@ -137,8 +201,8 @@ $f3->route('GET|POST /preferences', function($f3) {
 });
 
 //Define route to the third form page user hero preferences
-$f3->route('GET /heroes', function($f3) {
-
+$f3->route('GET /heroes', function($f3)
+{
     if ($_SESSION['user'] instanceof PremiumUser) {
         $view = new Template();
         echo $view->render('views/heroes.html');
@@ -150,8 +214,8 @@ $f3->route('GET /heroes', function($f3) {
 });
 
 //Define route to the third form page user hero preferences
-$f3->route('POST /heroes', function($f3) {
-
+$f3->route('POST /heroes', function($f3)
+{
     if (!($_SESSION['user'] instanceof PremiumUser)) {
         //Redirect to summary if not a PremiumUser
         //FIXME this might confuse me later so im making a note here
@@ -181,16 +245,13 @@ $f3->route('POST /heroes', function($f3) {
 
             $heroes = array();
 
-            if ($hero1 != '')
-            {
+            if ($hero1 != '') {
                 $heroes[] = $hero1;
             }
-            if ($hero2 != '')
-            {
+            if ($hero2 != '') {
                 $heroes[] = $hero2;
             }
-            if ($hero3 != '')
-            {
+            if ($hero3 != '') {
                 $heroes[] = $hero3;
             }
 
@@ -209,15 +270,16 @@ $f3->route('POST /heroes', function($f3) {
 });
 
 //Define route to the registration summary page
-$f3->route('GET|POST /summary', function() {
-
+$f3->route('GET|POST /summary', function()
+{
     $view = new Template();
     echo $view->render('views/summary.html');
 });
 
 //Define route to the user login page
-$f3->route('GET|POST /login', function() {
-
+$f3->route('GET|POST /login', function()
+{
+    //TODO: need to do login page
     //get data from form -  $variable = $_POST['']
 
     //add data to the hive - $f3->set('', $variable)
@@ -231,6 +293,8 @@ $f3->route('GET|POST /login', function() {
 
 //Define route to the user dashboard page
 $f3->route('GET|POST /dashboard', function() {
+    //TODO: need to do dashboard page
+    //TODO: assemble list items, form buttons? probably a good idea
     $view = new Template();
     echo $view->render('views/dashboard.html');
 });
