@@ -42,6 +42,18 @@ Description: This file contains the html structures for the registration summary
                 <br>
                 <h1 class="text-center">REGISTRATION SUMMARY</h1>
                 <hr>
+                <!-- TODO: Fill in details here, dummy values for now fix styles after -->
+                <p><strong>UserID: </strong>{{ @theUser[id] }}</p>
+                <p><strong>Platform: </strong>{{ @theUser[platform] }}</p>
+                <p><strong>Email: </strong>{{ @theUser[email] }}</p>
+                <p><strong>Tag: </strong>{{ @theUser[tag] }}</p>
+                <p><strong>Region: </strong>{{ @theUser[region] }}</p>
+                <p><strong>Mic Preference: </strong>{{ @theUser[micpref] }}</p>
+                <p><strong>Leadership: </strong>{{ @theUser[leaderpref] }}</p>
+                <p><strong>Role: </strong>{{ @theUser[role] }}</p>
+                <p><strong>First Hero Choice: </strong>{{ @theUser[hero1] }}</p>
+                <p><strong>Second Hero Choice: </strong>{{ @theUser[hero2] }}</p>
+                <p><strong>Third Hero Choice: </strong>{{ @theUser[hero3] }}</p>
                 <form action="login" method="post">
                     <div class="row">
                         <div class="col-4"></div>

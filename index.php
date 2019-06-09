@@ -270,8 +270,20 @@ $f3->route('POST /heroes', function($f3)
 });
 
 //Define route to the registration summary page
-$f3->route('GET|POST /summary', function()
+$f3->route('GET|POST /summary', function($f3)
 {
+    global $db;
+
+    $seshUser = $_SESSION['user'];
+    //var_dump($seshUser);
+
+    //view the user info in the database
+    //$theUser = $db->selectUser($seshUser);    //FIXME it doesn't like this <--------------
+
+    //set the hive
+    //$f3->set('theUser', $theUser);
+
+
     $view = new Template();
     echo $view->render('views/summary.html');
 });
