@@ -65,11 +65,12 @@ class Database
 
             $stmt->execute();
 
+            $id = $this->_db->lastInsertId();
+
             if ($user instanceof PremiumUser)
             {
                 $stmt = $db->prepare(self::$insertPremiumUserSQL);
 
-                $id = $this->_db->lastInsertId();
                 $role = $user->getRole();
 
                 $heroes = $user->getHeroes();
@@ -103,6 +104,10 @@ class Database
 
                 $stmt->execute();
             }
+
+            //FIXME note: if id is not -1, the user is considered DONE.
+            // use this logic to determine whether or not a row should be inserted or updated
+            $user->setId($id);
         }
 
         catch (PDOException $ex) {
@@ -121,7 +126,6 @@ class Database
     {
         //TODO: describe params in a comment here,
         // keys should match the names of fields and assume values are valid
-
 
         //FIXME: The statement should be generated based on the params that are given
         $db = $this->_db;

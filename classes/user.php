@@ -5,9 +5,9 @@
 
 class User
 {
-    // Defaults to -1 so that instantiated objects have no null fields.
+    // Defaults to 0 so that instantiated objects have no null fields.
     // A User's ID should be set ONLY if it has been inserted in the database.
-    private $_id = -1;
+    private $_id = 0;
     private $_platform;
     private $_email;
     private $_passhash;
