@@ -282,5 +282,5 @@ function validRole($role)
 function validHero($hero)
 {
     global $f3;
-    return array_key_exists($hero, $f3->get('heroes'));
+    return array_key_exists($hero, $f3->get('heroes')) || $hero == '';
 }
