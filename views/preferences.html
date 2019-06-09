@@ -52,7 +52,8 @@ Description: This file contains the html structures for the second form of regis
                     <div class="row">
                         <div class="col-2"></div>
                         <div class="col-8">
-                            <check if="{{ $_SESSION['user']->getPlatform()=='pc'}}">
+                            <check if="{{ $_SESSION['user']->getPlatform() == 'pc' && !(isset($_SESSION['platform']) ||
+                            $_SESSION['platform'] == 'pc')}}">
                                 <true>
                                     <div class="form-group">
                                         <label for="tag"><strong>BattleTag</strong></label>
@@ -79,7 +80,8 @@ Description: This file contains the html structures for the second form of regis
                                     </div>
                                 </true>
                             </check>
-                            <check if="{{ $_SESSION['user']->getPlatform()=='psn'}}">
+                            <check if="{{ $_SESSION['user']->getPlatform()=='psn' && !(isset($_SESSION['platform'])) ||
+                            $_SESSION['platform'] == 'psn'}}">
                                 <true>
                                     <div class="form-group">
                                         <label for="tag"><strong>Playstation Network ID</strong></label>
@@ -90,7 +92,8 @@ Description: This file contains the html structures for the second form of regis
                                     </div>
                                 </true>
                             </check>
-                            <check if="{{ $_SESSION['user']->getPlatform()=='xbl'}}">
+                            <check if="{{ $_SESSION['user']->getPlatform()=='xbl' && !(isset($_SESSION['platform'])) ||
+                            $_SESSION['platform'] == 'xbl'}}">
                                 <true>
                                     <div class="form-group">
                                         <label for="tag"><strong>Gamertag</strong></label>
