@@ -19,7 +19,7 @@ $f3 = Base::instance();
 //Turn on Fat-Free error reporting
 $f3->set('DEBUG', 3);
 
-// create the database connection, hive variable so that we could get data from views
+// create the database connection, FIXME note: hive variable so that we could get data from views
 $f3->set('db', new Database());
 
 //expected values for form fields
@@ -127,7 +127,7 @@ $f3->route('GET|POST /preferences', function($f3) {
                 $f3->get('db')->insertUser($user);
 
                 //Redirect to summary
-                //$f3->reroute('/summary');
+                $f3->reroute('/summary');
             }
         }
     }
@@ -210,6 +210,7 @@ $f3->route('POST /heroes', function($f3) {
 
 //Define route to the registration summary page
 $f3->route('GET|POST /summary', function() {
+
     $view = new Template();
     echo $view->render('views/summary.html');
 });
