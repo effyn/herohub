@@ -1,3 +1,8 @@
+/* Name: Alicia Buehner, Evan Wheeler
+ * Date: 6/10/19
+ * Description: This file contains the database create table statements.
+ */
+
 CREATE TABLE `herohub_user` (
     id int AUTO_INCREMENT PRIMARY KEY,
     platform VARCHAR(8) NOT NULL,
