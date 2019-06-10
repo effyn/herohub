@@ -55,9 +55,9 @@ class Database
     }
 
     /**
-     * Inserts a User into the database. For a PremiumUser, insertPremiumUser must also be called.
+     * Inserts a User into the database.
      *
-     * @param $user User the user to insert into the herohub-user table
+     * @param $user User the user to insert into the herohub_user and herohub_premiumuser table
      */
     public function insertUser($user)
     {
@@ -193,7 +193,7 @@ class Database
     {
         //TODO: impl,
         // use instanceof to determine whether to select a row
-        // in herohub-premiumuser as well and add its fields to the returned array
+        // in herohub_premiumuser as well and add its fields to the returned array
 
         // Probably don't need this but try/catch made result out of scope, if returned value is this query failed
         $result = 'Unable to retrieve user account';
@@ -239,36 +239,71 @@ class Database
     }
 
     /**
-     * Selects and returns a User that exists in the database. //FIXME for login??
+     * Selects and returns a User that exists in the database.
      *
-     * @return array the results of the query, might have PremiumUser data as well
+     * @return User the resulting User object, could be null
      */
-    public function selectUserLogin($email, $passhash)
+    public function loginUser($email, $passhash)
     {
-        //TODO move to static final field. $selectUserLoginSQL
-        //$sql = "SELECT id, platform, email, tag, region, micpref, leaderpref
-        //        FROM herohub-user
-        //        WHERE email = :email AND passhash = :passhash";
-
         //prepare the statement
-        //$db = $this->_db;
-        //$stmt = $db->prepare(self::$selectUserLoginSQL); //FIXME
+        $db = $this->_db;
+        $stmt = $db->prepare(self::$loginSelectSQL);
 
-        //bind the params
-        //$stmt->bindParam(':email', $email, PDO::PARAM_STR);
-        //$stmt->bindParam(':passhash', $passhash, PDO::PARAM_STR);
+        //bind the params and execute
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':passhash', $passhash, PDO::PARAM_STR);
+        $stmt->execute();
 
-        //execute
-        //$stmt->execute();
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        //$result = $stmt->fetchAll(PDO::FETCH_ASSOC); //Might be fetch() or fetchAll()
+        if (empty($data)) {
+            // user not found with the email+password provided
+            return null;
+        }
 
-        // FIXME premium-user query??? I think we need a row in the db for this??
-        //  if (premium db column == 1) { run premium-user table query and tack onto the ASSO array }
+        $stmt = $db->prepare(self::$selectPremiumUserSQL);
 
+        $id = $data['id'];
 
-        //TODO: return an array, then build a new object in the route....
-        return array();
+        // bind and execute
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $premiumData = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (empty($premiumData)) {
+            // initialize a generic User object
+            $user = new User($data['platform'], $data['email'], $data['passhash']);
+        } else {
+            // otherwise, premium and call premium-specific setters
+            $user = new PremiumUser($data['platform'], $data['email'], $data['passhash']);
+
+            $user->setRole($premiumData['role']);
+
+            $heroes = array();
+
+            if (isset($premiumData['hero1'])) {
+                $heroes[] = $premiumData['hero1'];
+            }
+
+            if (isset($premiumData['hero2'])) {
+                $heroes[] = $premiumData['hero2'];
+            }
+
+            if (isset($premiumData['hero2'])) {
+                $heroes[] = $premiumData['hero3'];
+            }
+
+            $user->setHeroes($heroes);
+        }
+
+        $user->setId($id);
+        $user->setTag($data['tag']);
+        $user->setRegion($data['region']);
+        $user->setMicPref($data['micpref']);
+        $user->setLeaderPref($data['leaderpref']);
+
+        return $user;
     }
 
     /**
@@ -280,6 +315,6 @@ class Database
     {
         //TODO: impl,
         // use instanceof to determine whether to delete a row
-        // from herohub-premiumuser as well
+        // from herohub_premiumuser as well
     }
 }
