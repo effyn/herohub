@@ -43,17 +43,17 @@ Description: This file contains the html structures for the registration summary
                 <h1 class="text-center">REGISTRATION SUMMARY</h1>
                 <hr>
                 <!-- TODO: Fill in details here, dummy values for now fix styles after -->
-                <p><strong>UserID: </strong>{{ @theUser[id] }}</p>
-                <p><strong>Platform: </strong>{{ @theUser[platform] }}</p>
-                <p><strong>Email: </strong>{{ @theUser[email] }}</p>
-                <p><strong>Tag: </strong>{{ @theUser[tag] }}</p>
-                <p><strong>Region: </strong>{{ @theUser[region] }}</p>
-                <p><strong>Mic Preference: </strong>{{ @theUser[micpref] }}</p>
-                <p><strong>Leadership: </strong>{{ @theUser[leaderpref] }}</p>
-                <p><strong>Role: </strong>{{ @theUser[role] }}</p>
-                <p><strong>First Hero Choice: </strong>{{ @theUser[hero1] }}</p>
-                <p><strong>Second Hero Choice: </strong>{{ @theUser[hero2] }}</p>
-                <p><strong>Third Hero Choice: </strong>{{ @theUser[hero3] }}</p>
+                <p><strong>UserID: </strong>{{ @SESSION.user->getId() }}</p>
+                <p><strong>Platform: </strong>{{ @SESSION.user->getPlatform() }}</p>
+                <p><strong>Email: </strong>{{ @SESSION.user->getEmail() }}</p>
+                <p><strong>Tag: </strong>{{ @SESSION.user->getTag() }}</p>
+                <p><strong>Region: </strong>{{ @SESSION.user->getRegion() }}</p>
+                <p><strong>Mic Preference: </strong>{{ @SESSION.user->getMicPref() }}</p>
+                <p><strong>Leadership: </strong>{{ @SESSION.user->getLeaderPref() }}</p>
+                <check if="@SESSION.user instanceof PremiumUser">
+                    <p><strong>Role: </strong>{{  @SESSION.user->getRole()  }}</p>
+                    <p><strong>Heroes: </strong>{{ implode(', ', @SESSION.user->getHeroes()) }}</p>
+                </check>
                 <form action="login" method="post">
                     <div class="row">
                         <div class="col-4"></div>
