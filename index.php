@@ -311,9 +311,20 @@ $f3->route('GET|POST /login', function($f3)
 });
 
 //Define route to the user dashboard page
-$f3->route('GET|POST /dashboard', function() {
+$f3->route('GET|POST /dashboard', function($f3) {
     //TODO: need to do dashboard page
     //TODO: assemble list items, form buttons? probably a good idea
+
+    if (!isset($_SESSION['user']))
+    {
+        // reroute to the login page if the page is accessed without a user
+        $f3->reroute('/login');
+    }
+
+    if (!empty($_POST)) {
+        $f3->set('users', $f3->get('db')->selectUsersWithHero($_POST['hero']));
+    }
+
     $view = new Template();
     echo $view->render('views/dashboard.html');
 });

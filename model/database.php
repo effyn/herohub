@@ -290,7 +290,7 @@ class Database
                 $heroes[] = $premiumData['hero2'];
             }
 
-            if (isset($premiumData['hero2'])) {
+            if (isset($premiumData['hero3'])) {
                 $heroes[] = $premiumData['hero3'];
             }
 
@@ -304,6 +304,56 @@ class Database
         $user->setLeaderPref($data['leaderpref']);
 
         return $user;
+    }
+
+    public function selectUsersWithHero($hero)
+    {
+        $db = $this->_db;
+        $stmt = $db->prepare(self::$heroSelectSQL);
+
+        //bind the params and execute
+        $stmt->bindParam(':hero', $hero, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $users = array();
+
+        foreach ($rows as $premium) {
+            $stmt = $db->prepare(self::$selectUserSQL);
+            $id = $premium['id'];
+
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            $userdata = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $user = new PremiumUser($userdata['platform'], $userdata['email'], $userdata['passhash']);
+            $user->setId($id);
+            $user->setTag($userdata['tag']);
+            $user->setRegion($userdata['region']);
+            $user->setMicPref($userdata['micpref']);
+            $user->setLeaderPref($userdata['leaderpref']);
+            $user->setRole($premium['role']);
+
+            $heroes = array();
+
+            if (isset($premium['hero1'])) {
+                $heroes[] = $premium['hero1'];
+            }
+
+            if (isset($premium['hero2'])) {
+                $heroes[] = $premium['hero2'];
+            }
+
+            if (isset($premium['hero3'])) {
+                $heroes[] = $premium['hero3'];
+            }
+
+            $user->setHeroes($heroes);
+
+            $users[] = $user;
+        }
+
+        return $users;
     }
 
     /**
