@@ -40,11 +40,17 @@ class Database
 
     private $_db;
 
+    /**
+     * Database constructor.
+     */
     public function __construct()
     {
         $this->connect();
     }
 
+    /**
+     * This function connects the database to the config file.
+     */
     private function connect()
     {
         try {
@@ -186,19 +192,13 @@ class Database
      * Selects and returns a User that exists in the database.
      *
      * @param $user User the user to select and return
-     *
      * @return array the results of the query, might have PremiumUser data as well
      */
     public function selectUser($user)
     {
-        //TODO: impl,
-        // use instanceof to determine whether to select a row
-        // in herohub_premiumuser as well and add its fields to the returned array
 
-        // Probably don't need this but try/catch made result out of scope, if returned value is this query failed
         $result = 'Unable to retrieve user account';
         try {
-            //define the query: is a private static field
 
             //prepare the statement
             $db = $this->_db;
@@ -234,7 +234,6 @@ class Database
             echo $ex->getMessage();
         }
 
-        //TODO: actually return the result of the query
         return $result;
     }
 
@@ -306,6 +305,12 @@ class Database
         return $user;
     }
 
+    /**
+     * Selects a PremiumUser from the database with the specified hero choice.
+     *
+     * @param $hero A hero choice to find matches for
+     * @return array Result matching hero
+     */
     public function selectUsersWithHero($hero)
     {
         $db = $this->_db;
