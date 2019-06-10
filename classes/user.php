@@ -31,7 +31,9 @@ class User
     }
 
     /**
-     * @return int
+     * Gets the User account id.
+     *
+     * @return int User id
      */
     public function getId()
     {
@@ -40,7 +42,6 @@ class User
 
     /**
      * Sets the ID acquired from the database for this User.
-     * NOTE: This MUST be called after a herohub-user row is inserted.
      *
      * @param int $id
      */
@@ -50,7 +51,9 @@ class User
     }
 
     /**
-     * @return string
+     * Gets the User tag which is either a PSN ID, Gamertag, or a BattleTag.
+     *
+     * @return string PSN ID / Gamertag / BattleTag
      */
     public function getTag()
     {
@@ -70,7 +73,9 @@ class User
     }
 
     /**
-     * @return string
+     * Gets a User email.
+     *
+     * @return string User email
      */
     public function getEmail()
     {
@@ -90,7 +95,9 @@ class User
     }
 
     /**
-     * @return string
+     * Gets User password.
+     *
+     * @return string User password
      */
     public function getPasshash()
     {
@@ -110,7 +117,9 @@ class User
     }
 
     /**
-     * @return string
+     * Gets the User gaming platform.
+     *
+     * @return string Gaming platform.
      */
     public function getPlatform()
     {
@@ -128,7 +137,10 @@ class User
     }
 
     /**
-     * @return string
+     * Gets User player region. This field is for PC players
+     * using a BattleTag.
+     *
+     * @return string User player region
      */
     public function getRegion()
     {
@@ -146,7 +158,9 @@ class User
     }
 
     /**
-     * @return int
+     * Gets the User mic preference.
+     *
+     * @return int Mic preference
      */
     public function getMicPref()
     {
@@ -164,7 +178,9 @@ class User
     }
 
     /**
-     * @return int
+     * Gets the User leadership preference.
+     *
+     * @return int User leadership preference.
      */
     public function getLeaderPref()
     {

@@ -23,7 +23,7 @@ class PremiumUser extends User
     /**
      * Gets the PremiumUser hero selections.
      *
-     * @return array
+     * @return array PremiumUser heroes
      */
     public function getHeroes()
     {
@@ -49,9 +49,9 @@ class PremiumUser extends User
     }
 
     /**
-     * Gets the role priority
+     * Gets the PremiumUser class role priority.
      *
-     * @return int
+     * @return int PremiumUser role priority.
      */
     public function getRole()
     {
