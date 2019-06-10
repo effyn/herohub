@@ -8,31 +8,35 @@ require_once "/home/{$_SERVER['USER']}/config.php";
 
 class Database
 {
-    private static $insertUserSQL = 'INSERT INTO `herohub-user`' .
+    private static $insertUserSQL = 'INSERT INTO `herohub_user`' .
     '(platform,  email,  passhash,  tag,  region,  micpref,  leaderpref' .
     ')VALUES(' .
     ':platform, :email, :passhash, :tag, :region, :micpref, :leaderpref);';
 
-    private static $insertPremiumUserSQL = 'INSERT INTO `herohub-premiumuser`' .
+    private static $insertPremiumUserSQL = 'INSERT INTO `herohub_premiumuser`' .
     '(id,  role,  hero1,  hero2,  hero3' .
     ')VALUES(' .
     ':id, :role, :hero1, :hero2, :hero3);';
 
-    private static $updateAccountSQL = 'UPDATE `herohub-user` ' .
+    private static $updateAccountSQL = 'UPDATE `herohub_user` ' .
     'SET platform = :platform, email = :email, passhash = :passhash ' .
     'WHERE id = :id;';
 
-    private static $updatePreferencesSQL = 'UPDATE `herohub-user` ' .
+    private static $updatePreferencesSQL = 'UPDATE `herohub_user` ' .
     'SET tag = :tag, region = :region, micpref = :micpref, leaderpref = :leaderpref ' .
     'WHERE id = :id;';
 
-    private static $selectUserSQL = 'SELECT id, platform, email, tag, region, micpref, leaderpref' .
-    'FROM `herohub-user`'.
+    private static $loginSelectSQL = 'SELECT * FROM `herohub_user` WHERE ' .
+    'WHERE email = :email AND passhash = :passhash;';
+
+    private static $heroSelectSQL = 'SELECT * FROM `herohub_premiumuser` WHERE ' .
+    'hero1 = :hero OR hero2 = :hero OR hero3 = :hero;';
+
+    private static $SelectUserSQL = 'SELECT * FROM `herohub_user` WHERE ' .
     'WHERE id = :id;';
 
-    private static $selectUserPremiumSQL = 'SELECT role, hero1, hero2, hero3 ' .
-    'FROM `herohub-premiumuser`'.
-    'WHERE id = :id;';
+    private static $selectPremiumUserSQL = 'SELECT * FROM `herohub_premiumuser` WHERE ' .
+    'id = :id;';
 
     private $_db;
 
