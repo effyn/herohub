@@ -12,7 +12,7 @@ Sarah is a top 500 Mercy player. She has selected preferences that indicate that
 
 Selecting more preferences will only make matches more relevant and does not decrease the amount of matches she will see. Being specific about what she looks for in a teammate offers a better experience for everyone.
 
-This project was set up to function with: Ow-API (Overwatch API) https://ow-api.com/
+This project was setup to function with: Ow-API (Overwatch API) https://ow-api.com/
 
 ## Disclaimer
 All Overwatch assets are accessed via Blizzard's content delivery network. The contributors of this repository do not claim these assets as works of their own.
@@ -30,11 +30,11 @@ Our project uses the Fat-Free Framework as a templating language to manage the M
 
 Read the Fat-Free Documentation here - https://fatfreeframework.com/3.6/user-guide
 
-Our project implements a defined database layer using PDO ( PHP Data Objects) where classes/user.php and classes/ premiumuser.php are User and PremiumUser objects that are utilized prior to inserting and after retrieval from a database. Information is retrieved from User objects and passed to the models/database.php to utilize prepared statements. Prepared statements are pre-compiled therefore, these statements execute faster and information passed as params prevent SQL injection by using placeholders information is passed from objects via the controller.  
+Our project implements a defined database layer using PDO ( PHP Data Objects) where classes/user.php and classes/ premiumuser.php are User and PremiumUser objects that are utilized prior to inserting and after retrieval from a database. Information is retrieved from User objects and passed to the model/database.php to utilize prepared statements. Prepared statements are pre-compiled therefore, these statements execute faster and information passed as params prevent SQL injection by using placeholders information is passed from objects via the controller.  
 
 Our project includes a means for a new user to create/add a new account. Users can view an account creation summary after successfully completing account registration and being inserted into the database. After a successful login, a user can search and view a list of hero matches that fit what they need to complete a team by retrieving a valid user account from the database. Users can update information on their dashboard via the Update Account Info, Update Playstyle Info, and Update Hero Info pages. A user can logout. A user can delete their account.
 
-Our project utilizes OOP where a user can be a standard User or a PremiumUser. PremiumUser is a User and has access additional functionality for Hero Preferences and Role Priority.
+Our project utilizes OOP where a user can be a standard User or a PremiumUser. PremiumUser is a User and has access to additional functionality for Hero Preferences and Role Priority.
 
 Our code base applies PHP Docblocks for documentation and follows PEAR standards. 
 
