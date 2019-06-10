@@ -47,7 +47,9 @@ Description: This file contains the html structures for the registration summary
                 <p><strong>Platform: </strong>{{ @SESSION.user->getPlatform() }}</p>
                 <p><strong>Email: </strong>{{ @SESSION.user->getEmail() }}</p>
                 <p><strong>Tag: </strong>{{ @SESSION.user->getTag() }}</p>
-                <p><strong>Region: </strong>{{ @SESSION.user->getRegion() }}</p>
+                <check if="@SESSION.user->getPlatform() != 'pc'">
+                    <p><strong>Region: </strong>{{ @SESSION.user->getRegion() }}</p>
+                </check>
                 <p><strong>Mic Preference: </strong>{{ @SESSION.user->getMicPref() }}</p>
                 <p><strong>Leadership: </strong>{{ @SESSION.user->getLeaderPref() }}</p>
                 <check if="@SESSION.user instanceof PremiumUser">
