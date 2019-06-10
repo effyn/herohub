@@ -38,6 +38,9 @@ class Database
     private static $selectPremiumUserSQL = 'SELECT * FROM `herohub_premiumuser` WHERE ' .
     'id = :id;';
 
+    private static $deleteAccountSQL = 'DELETE FROM `herohub_user` WHERE ' .
+    'id = :id;';
+
     private $_db;
 
     /**
@@ -308,7 +311,7 @@ class Database
     /**
      * Selects a PremiumUser from the database with the specified hero choice.
      *
-     * @param $hero A hero choice to find matches for
+     * @param $hero hero choice to find matches for
      * @return array Result matching hero
      */
     public function selectUsersWithHero($hero)
@@ -371,5 +374,32 @@ class Database
         //TODO: impl,
         // use instanceof to determine whether to delete a row
         // from herohub_premiumuser as well
+
+        //get the id to delete
+        $id = $user->getId();
+
+        //define the query - defined above
+
+        //prepare the statement
+        $db = $this->_db;
+        $stmt = $db->prepare(self::$deleteAccountSQL);
+
+        //bind the params
+
+        //execute
+
+        //result if there is one
+
+        //also delete the from PremiumUser
+        if ($user instanceof PremiumUser) {
+
+            //define the query - needs to be defined above
+
+            //prepare the statement
+
+            //execute
+
+            //return result if there is one
+        }
     }
 }
