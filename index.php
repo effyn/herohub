@@ -325,5 +325,18 @@ $f3->route('GET|POST /dashboard', function($f3)
     echo $view->render('views/dashboard.html');
 });
 
+$f3->route('GET /logout', function($f3)
+{
+    if (!isset($_SESSION['user']))
+    {
+        // reroute to the login page if the page is accessed without a user
+        $f3->reroute('/login');
+    }
+
+    // clear session array and route to root
+    $_SESSION = array();
+    $f3->reroute('/');
+});
+
 //Run Fat-free
 $f3->run();
