@@ -336,5 +336,16 @@ $f3->route('GET /logout', function($f3)
     $f3->reroute('/');
 });
 
+$f3->route('GET|POST /delete', function($f3)
+{
+
+    $f3->set('users', $f3->get('db')->deleteUser($_SESSION['user']));
+
+
+    // clear session array and route to root
+    $_SESSION = array();
+    $f3->reroute('/');
+});
+
 //Run Fat-free
 $f3->run();

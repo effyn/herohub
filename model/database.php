@@ -41,6 +41,9 @@ class Database
     private static $deleteAccountSQL = 'DELETE FROM `herohub_user` WHERE ' .
     'id = :id;';
 
+    private static $deletePremiumAccountSQL = 'DELETE FROM `herohub_premiumuser` WHERE ' .
+    'id = :id;';
+
     private $_db;
 
     /**
@@ -368,13 +371,10 @@ class Database
      * Deletes a User from the database.
      *
      * @param $user User the user to delete, deleting any PremiumUser data as well
+     * @return int result of row delete
      */
     public function deleteUser($user)
     {
-        //TODO: impl,
-        // use instanceof to determine whether to delete a row
-        // from herohub_premiumuser as well
-
         //get the id to delete
         $id = $user->getId();
 
@@ -384,22 +384,32 @@ class Database
         $db = $this->_db;
         $stmt = $db->prepare(self::$deleteAccountSQL);
 
-        //bind the params
+        // bind params
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
         //execute
+        $stmt->execute();
 
-        //result if there is one
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
         //also delete the from PremiumUser
         if ($user instanceof PremiumUser) {
 
-            //define the query - needs to be defined above
+            //define the query - needs to be defined above $deletePremiumAccountSQL
 
             //prepare the statement
+            $stmt = $db->prepare(self::$deletePremiumAccountSQL);
+
+            // bind params
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
             //execute
+            $stmt->execute();
 
             //return result if there is one
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
         }
+
+        return $result;
     }
 }
