@@ -274,8 +274,7 @@ $f3->route('POST /heroes', function($f3)
 //Define route to the registration summary page
 $f3->route('GET|POST /summary', function($f3)
 {
-    if (!isset($_SESSION['user']))
-    {
+    if (!isset($_SESSION['user'])) {
         // reroute to the login page if the page is accessed again
         $f3->reroute('/login');
     }
@@ -295,8 +294,7 @@ $f3->route('GET|POST /login', function($f3)
         $user = $f3->get('db')->loginUser(
             $_POST['email'], hash(HASH_ALGO, $_POST['password']));
 
-        if (isset($user))
-        {
+        if (isset($user)) {
             // successful login, so set the user in the session and
             // reroute to the dashboard
             $_SESSION['user'] = $user;
@@ -311,10 +309,8 @@ $f3->route('GET|POST /login', function($f3)
 });
 
 //Define route to the user dashboard page
-$f3->route('GET|POST /dashboard', function($f3) {
-    //TODO: need to do dashboard page
-    //TODO: assemble list items, form buttons? probably a good idea
-
+$f3->route('GET|POST /dashboard', function($f3)
+{
     if (!isset($_SESSION['user']))
     {
         // reroute to the login page if the page is accessed without a user
