@@ -43,11 +43,10 @@ Description: This file contains the html structures for the registration summary
                 <h1 class="text-center">REGISTRATION SUMMARY</h1>
                 <hr>
                 <!-- TODO: Fill in details here, dummy values for now fix styles after -->
-                <p><strong>UserID: </strong>{{ @SESSION.user->getId() }}</p>
                 <p><strong>Platform: </strong>{{ @SESSION.user->getPlatform() }}</p>
                 <p><strong>Email: </strong>{{ @SESSION.user->getEmail() }}</p>
                 <p><strong>Tag: </strong>{{ @SESSION.user->getTag() }}</p>
-                <check if="@SESSION.user->getPlatform() != 'pc'">
+                <check if="@SESSION.user->getPlatform() == 'pc'">
                     <p><strong>Region: </strong>{{ @SESSION.user->getRegion() }}</p>
                 </check>
                 <p><strong>Mic Preference: </strong>{{ @SESSION.user->getMicPref() }}</p>
