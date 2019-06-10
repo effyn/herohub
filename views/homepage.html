@@ -29,12 +29,24 @@ web application Final Project.
                             <li class="nav-item active">
                                 <a href="./"><strong>Homepage</strong></a>
                             </li>
-                            <li class="nav-item">
-                                <a href="login"><strong>Login</strong></a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="account"><strong>Register</strong></a>
-                            </li>
+                            <check if="{{isset($_SESSION['user']) && $_SESSION['user']->getId() != 0}}">
+                                <true>
+                                    <li class="nav-item">
+                                        <a href="dashboard"><strong>Dashboard</strong></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="logout"><strong>Logout</strong></a>
+                                    </li>
+                                </true>
+                                <false>
+                                    <li class="nav-item">
+                                        <a href="login"><strong>Login</strong></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="account"><strong>Register</strong></a>
+                                    </li>
+                                </false>
+                            </check>
                         </ul>
                         <hr>
                     </div>

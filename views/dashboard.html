@@ -25,25 +25,28 @@ Description: This file contains the html structures for the player dashboard
                     <div class="navpush">
                         <hr>
                         <ul class="nav flex-column">
-                            <li class="nav-item active">
+                            <li class="nav-item">
                                 <a href="./"><strong>Homepage</strong></a>
                             </li>
-                            <li class="nav-item">
-                                <a href="logout"><strong>Logout</strong></a>
+                            <li class="nav-item active">
+                                <a href="dashboard"><strong>Dashboard</strong></a>
                             </li>
                             <li class="nav-item">
-                                <a href="account"><strong>Update Account Info</strong></a>
+                                <a href="account"><strong>Update Account Details</strong></a>
                             </li>
                             <li class="nav-item">
-                                <a href="preferences"><strong>Update Playstyle Info</strong></a>
+                                <a href="preferences"><strong>Update Playstyle Preferences</strong></a>
                             </li>
                             <check if="{{ @SESSION.user instanceof PremiumUser }}">
                                 <true>
                                     <li class="nav-item">
-                                        <a href="heroes"><strong>Update Hero Info</strong></a>
+                                        <a href="heroes"><strong>Update Hero Preferences</strong></a>
                                     </li>
                                 </true>
                             </check>
+                            <li class="nav-item">
+                                <a href="logout"><strong>Logout</strong></a>
+                            </li>
                         </ul>
                         <hr>
 

@@ -261,7 +261,7 @@ $f3->route('POST /heroes', function($f3)
             $f3->get('db')->insertUser($user);
 
             //Redirect to summary
-            $f3->reroute('/summary');
+            $f3->reroute('/dashboard');
         }
     }
 
