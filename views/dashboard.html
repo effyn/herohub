@@ -32,15 +32,15 @@ Description: This file contains the html structures for the player dashboard
                                 <a href="dashboard"><strong>Dashboard</strong></a>
                             </li>
                             <li class="nav-item">
-                                <a href="account"><strong>Update Account Details</strong></a>
+                                <a href="account"><strong>Update Account Info</strong></a>
                             </li>
                             <li class="nav-item">
-                                <a href="preferences"><strong>Update Playstyle Preferences</strong></a>
+                                <a href="preferences"><strong>Update Playstyle Info</strong></a>
                             </li>
                             <check if="{{ @SESSION.user instanceof PremiumUser }}">
                                 <true>
                                     <li class="nav-item">
-                                        <a href="heroes"><strong>Update Hero Preferences</strong></a>
+                                        <a href="heroes"><strong>Update Hero Info</strong></a>
                                     </li>
                                 </true>
                             </check>
