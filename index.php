@@ -210,7 +210,6 @@ $f3->route('GET /heroes', function($f3)
         echo $view->render('views/heroes.html');
     } else {
         //Redirect to summary if not a PremiumUser
-        //FIXME this might confuse me later so im making a note here
         $f3->reroute('/summary');
     }
 });
@@ -220,7 +219,6 @@ $f3->route('POST /heroes', function($f3)
 {
     if (!($_SESSION['user'] instanceof PremiumUser)) {
         //Redirect to summary if not a PremiumUser
-        //FIXME this might confuse me later so im making a note here
         $f3->reroute('/summary');
     }
 
