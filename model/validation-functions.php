@@ -1,7 +1,7 @@
 <?php
 //Name: Alicia Buehner, Evan Wheeler
 //Date: 6/10/19
-//Description: This file contains the validation functions for our application
+//Description: This file contains the validation functions for the account registration/update forms
 
 /**
  * This function checks to see that account registration form
