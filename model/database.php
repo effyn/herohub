@@ -27,13 +27,13 @@ class Database
     'WHERE id = :id;';
 
     private static $loginSelectSQL = 'SELECT * FROM `herohub_user` WHERE ' .
-    'WHERE email = :email AND passhash = :passhash;';
+    'email = :email AND passhash = :passhash;';
 
     private static $heroSelectSQL = 'SELECT * FROM `herohub_premiumuser` WHERE ' .
     'hero1 = :hero OR hero2 = :hero OR hero3 = :hero;';
 
-    private static $SelectUserSQL = 'SELECT * FROM `herohub_user` WHERE ' .
-    'WHERE id = :id;';
+    private static $selectUserSQL = 'SELECT * FROM `herohub_user` WHERE ' .
+    'id = :id;';
 
     private static $selectPremiumUserSQL = 'SELECT * FROM `herohub_premiumuser` WHERE ' .
     'id = :id;';

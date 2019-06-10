@@ -16,6 +16,8 @@ session_start();
 //Create an instance of the Base class (instantiate Fat-Free)
 $f3 = Base::instance();
 
+define('HASH_ALGO', 'sha512');
+
 //Turn on Fat-Free error reporting
 $f3->set('DEBUG', 3);
 
@@ -77,7 +79,7 @@ $f3->route('GET|POST /account', function($f3)
         //redirect to preferences page
         if (validForm1()) {
             //hash password after valid check
-            $pw = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $pw = hash(HASH_ALGO, $_POST['password']);
 
             if ($loggedIn) {
                 if ($platform != $_SESSION['user']->getPlatform()) {
@@ -286,15 +288,23 @@ $f3->route('GET|POST /summary', function($f3)
 });
 
 //Define route to the user login page
-$f3->route('GET|POST /login', function()
+$f3->route('GET|POST /login', function($f3)
 {
-    //TODO: need to do login page
-    //get data from form -  $variable = $_POST['']
+    if (!empty($_POST)) {
+        // try to login and get the user
+        $user = $f3->get('db')->loginUser(
+            $_POST['email'], hash(HASH_ALGO, $_POST['password']));
 
-    //add data to the hive - $f3->set('', $variable)
+        if (isset($user))
+        {
+            // successful login, so set the user in the session and
+            // reroute to the dashboard
+            $_SESSION['user'] = $user;
+            $f3->reroute('/dashboard');
+        }
 
-    //if valid add to session (valid login form) set session to variable
-    //redirect to dashboard page
+        $f3->set('invalidLogin', true);
+    }
 
     $view = new Template();
     echo $view->render('views/login.html');
