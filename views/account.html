@@ -48,13 +48,13 @@ Description: This file contains the html structures for the first form of regist
                 <br>
                 <h1 class="text-center">ACCOUNT DETAILS</h1>
                 <hr>
-                <form action="#" method="post">
+                <form class="needs-validation" action="#" method="post" novalidate>
                     <div class="row">
                         <div class="col-2"></div>
                         <div class="col-8">
                             <div class="form-group">
                                 <label for="platform"><strong>Game Platform</strong></label>
-                                <select class="form-control text-center" name="platform" id="platform">
+                                <select class="form-control text-center" name="platform" id="platform" required>
                                     <option selected disabled>Select One</option>
                                     <repeat group="{{ @platforms }}" key="{{ @key }}" value="{{ @platformOption }}">
                                         <option value="{{ @key}}"
@@ -70,7 +70,8 @@ Description: This file contains the html structures for the first form of regist
                             </div>
                             <div class="form-group">
                                 <label for="email"><strong>Email</strong></label>
-                                <input class="form-control" type="email" name="email" id="email" value="{{ @email }}">
+                                <input class="form-control" type="email" name="email" id="email"
+                                       value="{{ @email }}" required>
                                 <check if="{{ @errors['email'] }}">
                                     <small id="emailHelp" class="text-danger">{{ @errors['email'] }}</small>
                                 </check>
@@ -79,14 +80,16 @@ Description: This file contains the html structures for the first form of regist
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <label for="password"><strong>Password</strong></label>
-                                        <input class="form-control" type="password" name="password" id="password" value="{{ @password }}">
+                                        <input class="form-control" type="password" name="password" id="password"
+                                               value="{{ @password }}" required>
                                         <check if="{{ @errors['password'] }}">
                                             <small id="password1Help" class="text-danger">{{ @errors['password'] }}</small>
                                         </check>
                                     </div>
                                     <div class="col-sm-6">
                                         <label for="password2"><strong>Confirm Password</strong></label>
-                                        <input class="form-control" type="password" name="password2" id="password2" value="{{ @password }}">
+                                        <input class="form-control" type="password" name="password2"
+                                               id="password2" value="{{ @password }}" required>
                                         <check if="{{ @errors['password2'] }}">
                                             <small id="password2Help" class="text-danger">{{ @errors['password2'] }}</small>
                                         </check>
@@ -106,8 +109,8 @@ Description: This file contains the html structures for the first form of regist
                             <div class="row">
                                 <fieldset>
                                     <legend class="col-form-label pt-0"><strong>Premium Access</strong></legend>
-                                    <input class="col-form-check-input" type="checkbox" name="membership" id="{{ @memberships }}"
-                                           value="{{ @memberships }}"
+                                    <input class="col-form-check-input" type="checkbox" name="membership"
+                                           id="{{ @memberships }}" value="{{ @memberships }}"
                                     <check if="{{ !(empty(@membership)) && @membership == @memberships }}">
                                         checked
                                     </check>>
@@ -143,5 +146,6 @@ Description: This file contains the html structures for the first form of regist
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="./javascript/bootstrapclientvalidation.js" type="text/javascript"></script>
 </body>
 </html>
