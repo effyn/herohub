@@ -1,4 +1,4 @@
-CREATE TABLE `herohub-user` (
+CREATE TABLE `herohub_user` (
     id int AUTO_INCREMENT PRIMARY KEY,
     platform VARCHAR(8) NOT NULL,
     email VARCHAR(254) NOT NULL,
@@ -9,7 +9,7 @@ CREATE TABLE `herohub-user` (
     leaderpref int NOT NULL
 );
 
-CREATE TABLE `herohub-premiumuser` (
+CREATE TABLE `herohub_premiumuser` (
     id int PRIMARY KEY NOT NULL,
     role int NOT NULL,
     hero1 VARCHAR(32),
