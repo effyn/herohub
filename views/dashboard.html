@@ -56,7 +56,32 @@ Description: This file contains the html structures for the player dashboard
                 <!-- TODO: replace (tag) with user tag -->
                 <h3>Greetings, (tag)</h3>
                 <!-- TODO: add search box, button, results div -->
+                <form action="#" method="post">
+                    <div class="row">
+                        <div class="col-4"></div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="searchbox"></label>
+                                <input class="form-control text-center" type="searchbox" name="searchbox" id="searchbox" placeholder="Search">
+                            </div>
+                            <div>
+                                <input class="btn-lg btn-primary btn-block" type="submit" value="Find Hero">
+                            </div>
+                        </div>
+                        <div class="col-4"></div>
+                    </div>
+                </form>
+                <h3>Hero Matches</h3>
+                <hr>
+                <div class="row">
+                    <div class="col-1"></div>
+                        <div class="col-10">
+                            <div id="searchresult">
 
+                            </div>
+                        </div>
+                    <div class="col-1"></div>
+                </div>
                 <footer class="footer mt-auto py-3">
                     <div class="row">
                         <div class="col">
