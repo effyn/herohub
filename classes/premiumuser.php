@@ -1,7 +1,7 @@
 <?php
 //Name: Alicia Buehner, Evan Wheeler
 //Date: 6/10/19
-//Description: This file defines the Premium User class that has access to hero preferences
+//Description: This file defines the PremiumUser class that has access to hero preferences, role priority
 
 class PremiumUser extends User
 {
@@ -21,6 +21,8 @@ class PremiumUser extends User
     }
 
     /**
+     * Gets the PremiumUser hero selections.
+     *
      * @return array
      */
     public function getHeroes()
@@ -48,6 +50,7 @@ class PremiumUser extends User
 
     /**
      * Gets the role priority
+     *
      * @return int
      */
     public function getRole()
@@ -57,6 +60,7 @@ class PremiumUser extends User
 
     /**
      * Sets the role priority
+     *
      * @param int $role
      */
     public function setRole($role)
