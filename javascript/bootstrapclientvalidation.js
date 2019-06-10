@@ -1,3 +1,7 @@
+//Name: Alicia Buehner, Evan Wheeler
+//Date: 6/10/19
+//Description: This file defines the Javascript that runs client-side validation via bootstrap class.
+
 
 //JavaScript for disabling form submissions if there are invalid fields
 (function() {
