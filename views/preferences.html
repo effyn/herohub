@@ -35,18 +35,24 @@ Description: This file contains the html structures for the second form of regis
                             </check>
                             <li class="nav-item">
                                 <a href="account"><strong>
-                                    <check if="{{isset($_SESSION['user']) && $_SESSION['user']->getId() != 0}}">Update </check>
-                                    Account Details</strong></a>
+                                    <check if="{{isset($_SESSION['user']) && $_SESSION['user']->getId() != 0}}">
+                                        <true>Update Account Info</true>
+                                        <false>Account Details</false>
+                                    </check></strong></a>
                             </li>
                             <li class="nav-item active">
                                 <a href="preferences"><strong>
-                                    <check if="{{isset($_SESSION['user']) && $_SESSION['user']->getId() != 0}}">Update </check>
-                                    Playstyle Preferences</strong></a>
+                                    <check if="{{isset($_SESSION['user']) && $_SESSION['user']->getId() != 0}}">
+                                        <true>Update Playstyle Info</true>
+                                        <false>Playstyle Preferences</false>
+                                    </check></strong></a>
                             </li>
                             <li class="nav-item">
                                 <a <check if="{{isset($_SESSION['user']) && $_SESSION['user']->getId() != 0}}">href="heroes"</check>><strong>
-                                    <check if="{{isset($_SESSION['user']) && $_SESSION['user']->getId() != 0}}">Update </check>
-                                    Hero Preferences</strong></a>
+                                <check if="{{isset($_SESSION['user']) && $_SESSION['user']->getId() != 0}}">
+                                    <true>Update Hero Info</true>
+                                    <false>Hero Preferences</false>
+                                </check></strong></a>
                             </li>
                             <check if="{{isset($_SESSION['user']) && $_SESSION['user']->getId() != 0}}">
                                 <li class="nav-item">
